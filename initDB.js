@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const faker = require("faker");
 const uniqueValidator = require('mongoose-unique-validator');
 const { Schema } = mongoose;
-var url = "mongodb+srv://groupe8:groupe8@cluster0.n4mow.mongodb.net/testdb?retryWrites=true&w=majority"
+var url = "mongodb+srv://groupe8:groupe8@cluster0.n4mow.mongodb.net/FixIt?retryWrites=true&w=majority"
 faker.locale = "fr";
 mongoose.Promise = global.Promise;
 
@@ -36,6 +36,8 @@ var metiers = [
     "shaper",
     "tonnelier"
 ]
+
+
 async function main(){
 try{
     mongoose.connect(url, {
@@ -50,13 +52,13 @@ try{
         console.log("Connecté");
         var db = mongoose.connection;
         try{
-           dropDB(db).then(creeAnnonce().then(creeArtisants()).then(creeClients())).then(seedDB());
+           dropDB(db).then(creeAnnonce()).then(creeArtisants()).then(creeClients()).then(seedDB());
         }catch(err){
             console.log(err);
         }finally{
             console.log("Successfull ! Disconnecting")
-           // mongoose.disconnect();
-            process.exit(1);
+           //mongoose.disconnect();
+            //process.exit(1);
         }
 
     });
@@ -87,6 +89,7 @@ async function creeArtisants(){
         },
         estenligne: Boolean,
         metier: String,
+        experience : Number,
         estverifie: Boolean,  
         identite:{
             data: Buffer,
@@ -123,7 +126,7 @@ async function creeAnnonce(){
         desciption: String,
         tarifmin: Number,
         tarifmax: Number,
-        avis: [{idclient: Number, note: Number, desc:String, date: Date}],
+        avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: Date}],
         tags: [{tag:String}],
         photo:{
             data: Buffer,
@@ -176,7 +179,9 @@ async function creeClients(){
 async function seedDB(){
     var db = mongoose.connection;
     try{
-       await seedArtisants(db).then(seedAnnonces(db)).then(seedClients(db)); 
+       await seedArtisants(db).then(seedAnnonces(db)).then(seedClients(db).finally(function(){
+           console.log("database seeded");
+        })); 
     }catch(err){
         console.log(err);
     }
@@ -206,10 +211,10 @@ async function seedArtisants(db){
         jobdesc = faker.lorem.sentence();
         login = faker.internet.userName();
         password = faker.internet.password();
-
+        exp = getdrandom(0,10);
         let Art = {
             id,login, password,nom,prenom, adresse, tel,email,avis:{"note":getdrandom(0,5),"avis":faker.lorem.lines},photo:{"data": photo, "info":desc},certificat:{data: photo, indo:desc},
-            estverifie:true, metier, estenligne:false, identite:{"data": photo, "info":desc}, jobdesc 
+            estverifie:true, metier, exp,estenligne:false, identite:{"data": photo, "info":desc}, jobdesc 
         }
 
         Artisants.push(Art);
@@ -243,8 +248,7 @@ async function seedClients(db){
 
         let Client = {
             id,nom,prenom, adresse, tel,email,photo:{"data": photo, "info":desc},identite:{data: photo, indo:desc}, desc
-        }
-        console.log(client);
+        };
         Clients.push(Client);
         
     }
@@ -269,7 +273,7 @@ async function seedAnnonces(db){
         tarifmax = 5000;
         let tag = (metiers[getdrandom(0,metiers.length -1)]);
         let annonce = {
-            Annonceid,nom,desc,tarifmin,tarifmax,avis: [{"idclient":getdrandom(0,5000),"note":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
+            Annonceid,nom,desc,tarifmin,tarifmax,avis: [{"idclient":getdrandom(0,5000),"noteservice":getdrandom(0,5),"notestemps":getdrandom(0,5),"NoteCom":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
             photo:{
                 "data": faker.internet.avatar(),
                 "info": faker.lorem.sentence()
