@@ -1,0 +1,26 @@
+<!-- Header ======================================================================================================== -->
+<header class="relative w-full">
+  <div class="w-full pl-4 md:px-12 lg:px-24 xl:px-32 flex justify-between items-center md:py-6 2xl:pt-8">
+    <div class="flex items-end cursor-pointer" routerLink="/">
+      <svg-icon src="{{ 'assets/svg/logo.svg' }}" [svgStyle]="{ 'width.px':90 }"></svg-icon>
+    </div>
+    <div class="items-center text-my-gray-3 hidden md:flex">
+      <div
+           class="text-my-blue-1 text-sm 2xl:text-base border border-my-blue-1 rounded-sm px-4 py-2 2xl:py-3 cursor-pointer hover:shadow"
+           matRipple>Proposer un service
+      </div>
+      <span (click)="openDialog2()"
+            class="ml-8 text-my-gray-3 text-sm 2xl:text-base border border-my-gray-3 rounded-sm px-4 py-2 2xl:py-3 cursor-pointer hover:shadow"
+            matRipple>Créer un compte
+      </span>
+      <span (click)="openDialog3()"
+            class="ml-6 text-sm 2xl:text-base cursor-pointer">S'identifier
+      </span>
+
+      <span class="ml-5 text-sm cursor-pointer">FR</span>
+    </div>
+
+  </div>
+</header>
+
+

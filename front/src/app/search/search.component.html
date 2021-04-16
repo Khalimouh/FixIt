@@ -1,0 +1,320 @@
+<app-navbar></app-navbar>
+<!-- main-search =================================================================================================== -->
+<div class="flex items-center justify-center bg-my-blue-2">
+  <div class="w-full xl:w-3/4 2xl:w-3/5 py-6 px-4 md:px-12 lg:px-24 xl:px-0">
+    <app-main-search></app-main-search>
+  </div>
+</div>
+<!-- main-filter =================================================================================================== -->
+<div class="filter-container">
+  <div class="w-full xl:w-3/4 2xl:w-3/5 py-5 px-4 md:px-12 lg:px-24 xl:px-0">
+    <div class="flex items-start">
+      <span class="font-medium items-center h-10 mr-5 hidden sm:flex">Filter</span>
+      <div class="grid grid-cols-6 lg:grid-cols-7 gap-2 flex-grow">
+        <div class="input-wrapper col-span-3 sm:col-span-2 lg:col-span-1">
+          <mat-select disableOptionCentering panelClass="my-mat-select" placeholder="Expérience">
+            <mat-option [value]=1>one</mat-option>
+            <mat-option [value]=2>two</mat-option>
+            <mat-option [value]=3>three</mat-option>
+          </mat-select>
+          <img alt="arrow-down" class="arrow-down" src="../../assets/icons/arrow-down.png">
+        </div>
+        <div class="input-wrapper col-span-3 sm:col-span-2 lg:col-span-1">
+          <mat-select disableOptionCentering panelClass="my-mat-select" placeholder="votre budget">
+            <mat-option [value]=1>one</mat-option>
+            <mat-option [value]=2>two</mat-option>
+            <mat-option [value]=3>three</mat-option>
+          </mat-select>
+          <img alt="arrow-down" class="arrow-down" src="../../assets/icons/arrow-down.png">
+        </div>
+        <div class="hidden lg:flex col-span-1"></div>
+        <div class="input-wrapper col-span-6  lg:col-span-2">
+          <input class="my-input" placeholder="Rechercher" type="search">
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Result tab ==================================================================================================== -->
+<div class="w-full xl:w-3/4 2xl:w-3/5 px-4 md:px-12 lg:px-24 xl:px-0 m-auto pt-5 text-my-gray-4">
+  <div class="grid grid-cols-4 gap-3" id="tab-0">
+
+    <div class="col-span-4 lg:col-span-3 flex flex-col">
+      <!-- Sort by ================================================================================================= -->
+      <div class="flex items-center bg-white sm:bg-my-gray-1 border-0 sm:border border-gray-border-2 rounded ">
+        <span class="text-sm sm:text-xs font-bold ml-3 sm:ml-5 mr-5">Trier</span>
+        <div class="hidden sm:flex">
+          <div class="label-wrapper active" matRipple>
+            <span class="text-xs">Meilleure correspondance</span>
+            <div class="label-indicator"></div>
+          </div>
+          <div class="label-wrapper" matRipple>
+            <span class="text-xs">Le moins cher</span>
+            <div class="label-indicator"></div>
+          </div>
+          <div class="label-wrapper" matRipple>
+            <span class="text-xs">Mieux noté</span>
+            <div class="label-indicator"></div>
+          </div>
+        </div>
+        <div class="input-wrapper sort-by w-3/5 ml-auto">
+          <mat-select disableOptionCentering panelClass="my-mat-select" placeholder="Trier par">
+            <mat-option [value]="'Meilleure correspondance'">Meilleure correspondance</mat-option>
+            <mat-option [value]="'Le moins cher'">Le moins cher</mat-option>
+            <mat-option [value]="'Proche de'">Proche de</mat-option>
+          </mat-select>
+          <img alt="arrow-down" class="arrow-down" src="../../assets/icons/arrow-down.png">
+        </div>
+      </div>
+      <!-- info cards ============================================================================================== -->
+
+      <div class="info-card sm:flex sm:h-full mt-4">
+        <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5">
+          <span class="flex items-center">
+            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4">Martin - Plombier</span>
+          </span>
+
+          <div class="hidden lg:grid grid-cols-3 gap-2 mt-3 sm:mt-4">
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Respect des délais</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Qualité de service</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Communication</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+          </div>
+          <span class="text-xs text-my-gray-4 font-semibold mt-2 sm:mt-3">CAP Installateur de sanitaire - BTS génie sanitaire</span>
+          <div class="flex pt-2">
+            <div class="flex">
+              <img src="../../assets/icons/note_flag.png">
+              <div class="flex flex-col ml-2">
+                <span class="text-sm font-bold text-green-500 leading-none">Expert</span>
+                <span class="text-xs text-my-gray-3 leading-none mt-1">Badge plateforme</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="sm:h-full sm:w-56 p-2 pt-1 sm:p-3">
+          <div class="h-12 sm:h-full grid grid-cols-4 sm:grid-cols-3 gap-1 sm:gap-1">
+            <div class="col-span-1 flex items-center sm:col-span-2 sm:row-span-2">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[0].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[1].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[2].data.thumb">
+            </div>
+
+          </div>
+        </div>
+        <div class="sm:h-full w-full sm:w-40 ml-auto hidden sm:flex flex-col items-end justify-between p-2 pt-16 pb-4">
+          <span class="text-xs text-green-500">Disponible Immédiatement</span>
+          <div class="flex flex-col justify-between">
+            <span class="text-xs text-my-gray-4">Prix par jour, a partir de:</span>
+            <span class="text-sm text-my-gray-4 mt-1 ml-auto"><span class="font-semibold">100 </span>EUR</span>
+          </div>
+        </div>
+        <div class="note-badge bg-my-blue-1">
+          <span class="font-bold text-sm leading-none">9,8</span>
+          <span class="font-medium leading-none mt-1" style="font-size: 8px">Excellent</span>
+        </div>
+      </div>
+      <div class="info-card sm:flex sm:h-full mt-4">
+        <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5">
+          <span class="flex items-center">
+            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4">Martin - Plombier</span>
+          </span>
+
+          <div class="hidden lg:grid grid-cols-3 gap-2 mt-3 sm:mt-4">
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Respect des délais</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Qualité de service</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Communication</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+          </div>
+          <span class="text-xs text-my-gray-4 font-semibold mt-2 sm:mt-3">CAP Installateur de sanitaire - BTS génie sanitaire</span>
+          <div class="flex pt-2">
+            <div class="flex">
+              <img src="../../assets/icons/note_flag.png">
+              <div class="flex flex-col ml-2">
+                <span class="text-sm font-bold text-green-500 leading-none">Expert</span>
+                <span class="text-xs text-my-gray-3 leading-none mt-1">Badge plateforme</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="sm:h-full sm:w-56 p-2 pt-1 sm:p-3">
+          <div class="h-12 sm:h-full grid grid-cols-4 sm:grid-cols-3 gap-1 sm:gap-1">
+            <div class="col-span-1 flex items-center sm:col-span-2 sm:row-span-2">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[0].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[1].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[2].data.thumb">
+            </div>
+
+          </div>
+        </div>
+        <div class="sm:h-full w-full sm:w-40 ml-auto hidden sm:flex flex-col items-end justify-between p-2 pt-16 pb-4">
+          <span class="text-xs text-green-500">Disponible Immédiatement</span>
+          <div class="flex flex-col justify-between">
+            <span class="text-xs text-my-gray-4">Prix par jour, a partir de:</span>
+            <span class="text-sm text-my-gray-4 mt-1 ml-auto"><span class="font-semibold">100 </span>EUR</span>
+          </div>
+        </div>
+        <div class="note-badge bg-my-blue-1">
+          <span class="font-bold text-sm leading-none">9,8</span>
+          <span class="font-medium leading-none mt-1" style="font-size: 8px">Excellent</span>
+        </div>
+      </div>
+      <div class="info-card sm:flex sm:h-full mt-4">
+        <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5">
+          <span class="flex items-center">
+            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4">Martin - Plombier</span>
+          </span>
+
+          <div class="hidden lg:grid grid-cols-3 gap-2 mt-3 sm:mt-4">
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Respect des délais</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Qualité de service</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Communication</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+          </div>
+          <span class="text-xs text-my-gray-4 font-semibold mt-2 sm:mt-3">CAP Installateur de sanitaire - BTS génie sanitaire</span>
+          <div class="flex pt-2">
+            <div class="flex">
+              <img src="../../assets/icons/note_flag.png">
+              <div class="flex flex-col ml-2">
+                <span class="text-sm font-bold text-green-500 leading-none">Expert</span>
+                <span class="text-xs text-my-gray-3 leading-none mt-1">Badge plateforme</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="sm:h-full sm:w-56 p-2 pt-1 sm:p-3">
+          <div class="h-12 sm:h-full grid grid-cols-4 sm:grid-cols-3 gap-1 sm:gap-1">
+            <div class="col-span-1 flex items-center sm:col-span-2 sm:row-span-2">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[0].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[1].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[2].data.thumb">
+            </div>
+
+          </div>
+        </div>
+        <div class="sm:h-full w-full sm:w-40 ml-auto hidden sm:flex flex-col items-end justify-between p-2 pt-16 pb-4">
+          <span class="text-xs text-green-500">Disponible Immédiatement</span>
+          <div class="flex flex-col justify-between">
+            <span class="text-xs text-my-gray-4">Prix par jour, a partir de:</span>
+            <span class="text-sm text-my-gray-4 mt-1 ml-auto"><span class="font-semibold">100 </span>EUR</span>
+          </div>
+        </div>
+        <div class="note-badge bg-my-blue-1">
+          <span class="font-bold text-sm leading-none">9,8</span>
+          <span class="font-medium leading-none mt-1" style="font-size: 8px">Excellent</span>
+        </div>
+      </div>
+      <div class="info-card sm:flex sm:h-full mt-4">
+        <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5">
+          <span class="flex items-center">
+            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4">Martin - Plombier</span>
+          </span>
+
+          <div class="hidden lg:grid grid-cols-3 gap-2 mt-3 sm:mt-4">
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Respect des délais</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Qualité de service</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+            <div class="relative xl:col-span-1 flex items-center h-6 border border-gray-border-2 rounded overflow-hidden">
+              <img class="h-3 mx-1" src="../../assets/icons/belle.png">
+              <span class="text-my-gray-4" style="font-size: 10px; white-space: nowrap">Communication</span>
+              <div class="absolute right-0 bg-my-blue-1 font-medium text-white px-1 h-full flex items-center justify-center" style="width: fit-content; font-size: 10px">9.2</div>
+            </div>
+          </div>
+          <span class="text-xs text-my-gray-4 font-semibold mt-2 sm:mt-3">CAP Installateur de sanitaire - BTS génie sanitaire</span>
+          <div class="flex pt-2">
+            <div class="flex">
+              <img src="../../assets/icons/note_flag.png">
+              <div class="flex flex-col ml-2">
+                <span class="text-sm font-bold text-green-500 leading-none">Expert</span>
+                <span class="text-xs text-my-gray-3 leading-none mt-1">Badge plateforme</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="sm:h-full sm:w-56 p-2 pt-1 sm:p-3">
+          <div class="h-12 sm:h-full grid grid-cols-4 sm:grid-cols-3 gap-1 sm:gap-1">
+            <div class="col-span-1 flex items-center sm:col-span-2 sm:row-span-2">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[0].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[1].data.thumb">
+            </div>
+            <div class="col-span-1 flex items-center">
+              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="items[2].data.thumb">
+            </div>
+
+          </div>
+        </div>
+        <div class="sm:h-full w-full sm:w-40 ml-auto hidden sm:flex flex-col items-end justify-between p-2 pt-16 pb-4">
+          <span class="text-xs text-green-500">Disponible Immédiatement</span>
+          <div class="flex flex-col justify-between">
+            <span class="text-xs text-my-gray-4">Prix par jour, a partir de:</span>
+            <span class="text-sm text-my-gray-4 mt-1 ml-auto"><span class="font-semibold">100 </span>EUR</span>
+          </div>
+        </div>
+        <div class="note-badge bg-my-blue-1">
+          <span class="font-bold text-sm leading-none">9,8</span>
+          <span class="font-medium leading-none mt-1" style="font-size: 8px">Excellent</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
