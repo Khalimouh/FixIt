@@ -109,7 +109,7 @@ async function creeArtisants(){
 
     Artisantschema.plugin(uniqueValidator);
     //Creation du model
-    const Artisant = mongoose.model('Artisant', Artisantschema);
+    const Artisant = mongoose.model('artisants', Artisantschema);
 
     try{ 
         var promise = await Artisant.createCollection();
@@ -134,7 +134,7 @@ async function creeAnnonce(){
         }
     });
     //Creation du model
-    const Annonce = mongoose.model('Annonces', Annonceschema);
+    const Annonce = mongoose.model('annonces', Annonceschema);
     try{ 
         var promise = await Annonce.createCollection();
 
@@ -166,7 +166,7 @@ async function creeClients(){
     });
 
     //Creation du model
-    const Client = mongoose.model('Client', Clientschema);
+    const Client = mongoose.model('clients', Clientschema);
     try{ 
         var promise2 = await Client.createCollection();
 
@@ -195,7 +195,7 @@ async function dropDB(db){
 }
 
 async function seedArtisants(db){
-    let ArtisantCollection = db.collection("Artisant");
+    let ArtisantCollection = db.collection("artisants");
     let Artisants = [];
     let id, nom, prenom,adresse,tel, email, photo, desc, metier, jobdesc, login,password;
     for (let size = 0; size < 5000; size++) {
@@ -232,7 +232,7 @@ async function seedArtisants(db){
 
 // Implementation de la table client
 async function seedClients(db){
-    let ClientCollection = db.collection("Client");
+    let ClientCollection = db.collection("clients");
     let Clients = [];
     let id, nom, prenom,adresse,tel, email, photo, identite, desc;
     for (let size = 0; size < 5000; size++) {
@@ -262,7 +262,7 @@ async function seedClients(db){
 
 
 async function seedAnnonces(db){
-    let AnnoncesCollection = db.collection("Annonces");
+    let AnnoncesCollection = db.collection("annonces");
     let annonces = [];
     let Annonceid,nom,desc,tarifmin,tarifmax;
     for (let size = 0; size < 5000; size++) {
