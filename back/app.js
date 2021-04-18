@@ -7,12 +7,15 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var helmet = require('helmet');
 var cors = require("cors");
+var ejs = require("ejs");
+
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 
 
 var app = express();
+app.set('view engine', 'ejs');
 
 const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.n4mow.mongodb.net/FixIt?retryWrites=true&w=majority`;
 mongoose.connect(url, {
@@ -32,12 +35,11 @@ let db = mongoose.connection;
 app.use(logger('dev'));
 app.use(helmet());
 app.use(cors());
-app.use(cookieParser());
 app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({extended: true}));
+app.use(bodyparser.urlencoded({extended: false}));
+app.use(cookieParser());
 //defini un dossier statique accessible par le navigateur
 app.use(express.static(path.join(__dirname, 'public')));
-
 
 //Defini les routeurs a appliquer
 app.use('/', indexRouter);
