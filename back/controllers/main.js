@@ -11,7 +11,7 @@ module.exports = {
             var regex = new RegExp(req.body.nom,'i');
         }
         let annonces = mongoose.connection.collection("annonces");
-        /*FIXME: Comportement incompréhensible quand on cherche par tag et ville*/
+        /*FIXME:Comportement incompréhensible quand on cherche par tag $and ville*/
         annonces.find({$or :[{$or: [
                                     {$and: [{code: req.body.code,nom: regex}]},
                                     {$and: [{tag: req.body.tag,nom: regex}]},
