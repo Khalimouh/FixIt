@@ -425,10 +425,6 @@ img {
      object-fit: cover;
 }
 
-.outline-none {
-  outline: 0;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
