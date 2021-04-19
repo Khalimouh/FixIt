@@ -12,5 +12,16 @@ module.exports = {
                res.status(200).json(client);
            }
        });
-    }
+    },
+
+    getUser: function(req, res, next){
+        Client.findOne({_id: mongoose.Types.ObjectId(req.user_id)}, function (err, user) {
+            if(err) {
+                console.log(err);
+                res.status(400).json({error:"user not found"});
+            }else{
+                res.status(200).json(user);
+            }
+        })
+    },
 }
