@@ -7,22 +7,24 @@
     <div class="col-span-6 h-full  flex items-center  border-r">
       <input  class="tex"
               placeholder="Mission"
-              type="text">
+              type="text"
+              [(ngModel)]="mission"
+      >
     </div>
   </div>
 
   <!-- Date ==== -->
   <div class="col-span-8 md:col-span-4 lg:col-span-2 h-10 flex items-center bg-white" id="check-in-out">
     <div class="w-full h-full grid-cols-7 gap-0 flex items-center py-2">
-      <div class="clo-span-1 flex items-center justify-center cursor-pointer" (click)="picker1.open()">
+      <div class="clo-span-1 flex items-center justify-center cursor-pointer" >
         <svg-icon class="mx-3" src="{{ 'assets/svg/calendar.svg' }}" [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.7)' }"></svg-icon>
       </div>
       <label class="col-span-3 h-full  flex items-center  border-r">
-        <input (dateChange)="date1Selected($event)"
-               [matDatepicker]="picker1" [min]="minDate1" class="text-center outline-none w-full" matInput
-               placeholder="Date de début">
-        <mat-datepicker-toggle [for]="picker1" matSuffix></mat-datepicker-toggle>
-        <mat-datepicker #picker1 panelClass="my-mat-datepicker"></mat-datepicker>
+        <input  class="tex"
+                placeholder="prix"
+                type="number"
+                [(ngModel)]="prix"
+        >
       </label>
 
     </div>
@@ -35,8 +37,8 @@
     </div>
     <div class="col-span-6">
       <mat-select disableOptionCentering panelClass="mat-select-options mat-select-extra-options"
-                  placeholder="Ville ou région">
-        <mat-option *ngFor="let state of states" [value]="state">{{state}}</mat-option>
+                  placeholder="Ville ou région" [(value)]="code">
+        <mat-option *ngFor="let state of states"  [value]="state">{{state}}</mat-option>
       </mat-select>
     </div>
   </div>
@@ -44,7 +46,9 @@
   <!-- search ==== -->
   <button
     class="col-span-8 md:col-span-2 lg:col-span-1 h-10 bg-my-blue-1 hover:bg-blue-500 font-medium text-white text-center text-base"
-    routerLink="/result">
+    (click)="doSearch()"
+    routerLink="/result"
+  >
     Rechercher
   </button>
 </div>

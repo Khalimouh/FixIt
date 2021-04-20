@@ -25,6 +25,17 @@ code {
   font-size: 1em; 
 }
 
+sub {
+  font-size: 75%;
+  line-height: 0;
+  position: relative;
+  vertical-align: baseline;
+}
+
+sub {
+  bottom: -0.25em;
+}
+
 img {
   border-style: none;
 }
@@ -105,12 +116,17 @@ p {
 button {
   background-color: transparent;
   background-image: none;
-  padding: 0;
 }
 
 button:focus {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 html {
@@ -425,10 +441,6 @@ img {
      object-fit: cover;
 }
 
-.outline-none {
-  outline: 0;
-}
-
 .overflow-hidden {
   overflow: hidden;
 }
@@ -645,6 +657,45 @@ img {
 
 .col-span-8 {
   grid-column: span 8 / span 8;
+}
+
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
 }
 
 @media (min-width: 640px) {

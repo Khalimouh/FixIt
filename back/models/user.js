@@ -19,7 +19,11 @@ const Clientschema = new Schema({
         data: Buffer,
         info: String
     },
-    description: String
+    description: String,
+    refreshTokens: [{
+        type: String,
+        trim: true,
+    }]
 });
 
 //Création d'un middleware de chiffrement à éxécuter avant l'insertion en base
