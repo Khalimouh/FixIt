@@ -17,7 +17,7 @@
                     <svg-icon class="mx-3" src="{{ 'assets/svg/mail.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
-                        <input [(ngModel)]="loginUserData.login" class="my-input pr-3" formControlName="email"
+                        <input [(ngModel)]="loginUserData" class="my-input pr-3" formControlName="email"
                                placeholder="Adresse email"
                                type="email" name="email" autocomplete="email" autofocus>
                     </label>
@@ -28,7 +28,7 @@
                     <svg-icon class="mx-3" src="assets/svg/lock.svg"
                               [svgStyle]="{ 'width.px': 20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
-                        <input [(ngModel)]="loginUserData.password"  class="my-input pr-3" formControlName="password" placeholder="Password"
+                        <input [(ngModel)]="loginUserData"  class="my-input pr-3" formControlName="password" placeholder="Password"
                                type="password" autocomplete="current-passwor">
                     </label>
                 </div>
