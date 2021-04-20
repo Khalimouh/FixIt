@@ -50,7 +50,11 @@ export class LoginComponent implements OnInit, OnDestroy {
     loginUser(){
         this._auth.loginUser(this.loginUserData)
             .subscribe(
-                res => console.log(res),
+                res => {console.log(res)
+                    localStorage.setItem('refreshToken',res.refreshToken)
+                    localStorage.setItem('accessToken',res.accessToken)
+
+                },
                 err =>console.log(err)
             )
     }
