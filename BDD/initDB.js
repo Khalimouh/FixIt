@@ -70,6 +70,7 @@ try{
 async function creeArtisants(){
     const Artisantschema = new Schema({
         id: Number,
+        dispo: Boolean,
         login: String,
         password: String,
         nom: String,
@@ -126,12 +127,14 @@ async function creeAnnonce(){
         desciption: String,
         tarifmin: Number,
         tarifmax: Number,
+        artisantid: Number,
         avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: Date}],
         tags: [{tag:String}],
         photo:{
             data: Buffer,
             info: String
-        }
+        },
+        code: Number
     });
     //Creation du model
     const Annonce = mongoose.model('annonces', Annonceschema);
@@ -212,8 +215,9 @@ async function seedArtisants(db){
         login = faker.internet.userName();
         password = faker.internet.password();
         exp = getdrandom(0,10);
+
         let Art = {
-            id,login, password,nom,prenom, adresse, tel,email,avis:{"note":getdrandom(0,5),"avis":faker.lorem.lines},photo:{"data": photo, "info":desc},certificat:{data: photo, indo:desc},
+            id, dispo:true,login, password,nom,prenom, adresse, tel,email,avis:{"note":getdrandom(0,5),"avis":faker.lorem.lines},photo:{"data": photo, "info":desc},certificat:{data: photo, indo:desc},
             estverifie:true, metier, exp,estenligne:false, identite:{"data": photo, "info":desc}, jobdesc 
         }
 
@@ -273,11 +277,12 @@ async function seedAnnonces(db){
         tarifmax = 5000;
         let tag = (metiers[getdrandom(0,metiers.length -1)]);
         let annonce = {
-            Annonceid,nom,desc,tarifmin,tarifmax,avis: [{"idclient":getdrandom(0,5000),"noteservice":getdrandom(0,5),"notestemps":getdrandom(0,5),"NoteCom":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
+            Annonceid,nom,desc,tarifmin,tarifmax,artiantid:getdrandom(0,500), avis: [{"idclient":getdrandom(0,5000),"noteservice":getdrandom(0,5),"notestemps":getdrandom(0,5),"NoteCom":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
             photo:{
                 "data": faker.internet.avatar(),
                 "info": faker.lorem.sentence()
-            }
+            },
+            code : faker.address.zipCode('###')+ "00"
         }
             annonces.push(annonce);
 

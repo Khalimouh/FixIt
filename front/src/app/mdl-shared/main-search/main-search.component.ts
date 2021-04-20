@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {SharedService} from '../shared.service';
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-main-search',
@@ -8,22 +9,47 @@ import {SharedService} from '../shared.service';
 })
 export class MainSearchComponent implements OnInit {
 
-  constructor(private sharedS: SharedService) {}
+  constructor(private sharedS: SharedService, private http: HttpClient) {}
   lgScreen = false;
   states = this.sharedS.states;
-  minDate1: Date;
-  minDate2: Date;
-  Date1: Date;
+  annonces = [];
+  mission: string;
+  prix: number;
+  code: string;
+
 
   ngOnInit(): void {
-
-    this.minDate1 = new Date();
-    this.minDate1.setDate(this.minDate1.getDate() + 1);
+    this.mission = "Mission";
+    this.prix = 0;
+    this.code = "75";
   }
 
-  date1Selected(e) {
-    this.Date1 = new Date(e.value);
-    this.minDate2 = new Date(e.value);
-    this.minDate2.setDate(this.minDate2.getDate());
-  }
+  doSearch(){
+    console.log(this.mission, this.prix, this.code);
+    let url = "http://localhost:3000/search?";
+    const params = new HttpParams()
+        .set('metier', this.mission)
+        .set('prix', this.prix.toString())
+        .set('code', this.code.slice(0,2));
+
+    const body = {
+      metier: this.mission,
+      prix: this.prix,
+      code: this.code.slice(0,2) + "000"
+    }
+    let headers = new HttpHeaders();
+    headers=headers.append('content-type','application/json');
+    headers=headers.append('Access-Control-Allow-Origin', '*');
+    //headers=headers.append('content-type','application/x-www-form-urlencoded');
+    //@ts-ignore
+    this.http.post(url, body,{'header': headers, 'params':params}).subscribe(
+        (res) => {
+          this.sharedS.storeData(res);
+        },
+        (err) => {
+          console.error(err);
+        }
+    )
+  };
+
 }

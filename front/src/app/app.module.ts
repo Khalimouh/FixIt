@@ -13,7 +13,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import {
     faUsers, faBedAlt, faCalendarAlt, faChevronDown} from '@fortawesome/pro-light-svg-icons';
 import { SearchComponent } from './search/search.component';
-
+import { ScrollingModule } from '@angular/cdk/scrolling';
 
 
 @NgModule({
@@ -30,6 +30,7 @@ import { SearchComponent } from './search/search.component';
         BrowserAnimationsModule,
         ToastrModule.forRoot(),
         FontAwesomeModule,
+        ScrollingModule
     ],
     providers: [
     ],
