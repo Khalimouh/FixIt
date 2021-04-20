@@ -123,5 +123,8 @@
       }
     }
   },
-  "defaultProject": "homeServices"
+  "defaultProject": "homeServices",
+  "cli": {
+    "analytics": false
+  }
 }

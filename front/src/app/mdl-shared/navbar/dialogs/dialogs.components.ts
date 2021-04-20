@@ -1,7 +1,7 @@
 import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-
+import {AuthService} from "../../../auth.service";
 
 
 // Dialog1 ==========================================================================
@@ -44,6 +44,16 @@ export class LoginComponent implements OnInit, OnDestroy {
     loginForm: FormGroup;
     submitted = false;
     registerForm: FormGroup;
+    loginUserData={}
+
+
+    loginUser(){
+        this._auth.loginUser(this.loginUserData)
+            .subscribe(
+                res => console.log(res),
+                err =>console.log(err)
+            )
+    }
 
     onLoginSubmit() {
     }
@@ -64,6 +74,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     constructor(
         private dialogRef: MatDialogRef<SignUpComponent>,
         private formBuilder: FormBuilder,
+        private _auth: AuthService,
     ) {
     }
 
