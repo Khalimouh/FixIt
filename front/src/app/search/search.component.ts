@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Gallery, GalleryItem, ImageItem} from '@ngx-gallery/core';
+import {SharedService} from '../mdl-shared/shared.service';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-main-result',
@@ -8,35 +10,14 @@ import {Gallery, GalleryItem, ImageItem} from '@ngx-gallery/core';
 })
 export class SearchComponent implements OnInit {
   items: GalleryItem[] = [];
-  data = [
-    {
-      srcUrl: './assets/images/1.jpg',
-      previewUrl: './assets/images/1.jpg'
-    },
-    {
-      srcUrl: './assets/images/2.jpg',
-      previewUrl: './assets/images/2.jpg'
-    },
-    {
-      srcUrl: './assets/images/3.jpg',
-      previewUrl: './assets/images/3.jpg'
-    },
-    {
-      srcUrl: './assets/images/4.jpg',
-      previewUrl: './assets/images/4.jpg'
-    },
-    {
-      srcUrl: './assets/images/5.jpg',
-      previewUrl: './assets/images/5.jpg'
-    }
-  ];
-  constructor(private gallery: Gallery) { }
+  annonces: any[] = [];
+  sub: Subscription;
+
+  constructor(private sharedS:SharedService) {}
 
   ngOnInit(): void {
-    this.items = this.data.map(item =>
-      new ImageItem({ src: item.srcUrl, thumb: item.previewUrl })
-    );
-    this.gallery.ref().load(this.items);
+    this.sub = this.sharedS.ann.subscribe(annonces => this.annonces = annonces)
+    console.log(this.annonces);
   }
 
-  }
+}

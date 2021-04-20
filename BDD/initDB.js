@@ -127,7 +127,7 @@ async function creeAnnonce(){
         desciption: String,
         tarifmin: Number,
         tarifmax: Number,
-
+        artisantid: Number,
         avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: Date}],
         tags: [{tag:String}],
         photo:{
@@ -277,7 +277,7 @@ async function seedAnnonces(db){
         tarifmax = 5000;
         let tag = (metiers[getdrandom(0,metiers.length -1)]);
         let annonce = {
-            Annonceid,nom,desc,tarifmin,tarifmax,avis: [{"idclient":getdrandom(0,5000),"noteservice":getdrandom(0,5),"notestemps":getdrandom(0,5),"NoteCom":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
+            Annonceid,nom,desc,tarifmin,tarifmax,artiantid:getdrandom(0,500), avis: [{"idclient":getdrandom(0,5000),"noteservice":getdrandom(0,5),"notestemps":getdrandom(0,5),"NoteCom":getdrandom(0,5),"desc":faker.lorem.sentences(), "date": faker.date.recent()}], tag,
             photo:{
                 "data": faker.internet.avatar(),
                 "info": faker.lorem.sentence()
