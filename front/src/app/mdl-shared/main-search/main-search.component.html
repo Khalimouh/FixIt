@@ -5,7 +5,7 @@
       <svg-icon class="mx-3" src="{{ 'assets/svg/service-client.svg' }}" [svgStyle]="{ 'width.px':20, 'height.px':25, 'fill': 'rgba(91, 99, 109, 1)' }"></svg-icon>
 
     <div class="col-span-6 h-full  flex items-center  border-r">
-      <input  class="tex"
+      <input  class="tex" matInput
               placeholder="Mission"
               type="text"
               [(ngModel)]="mission"
@@ -13,15 +13,15 @@
     </div>
   </div>
 
-  <!-- Date ==== -->
+  <!-- Budget ==== -->
   <div class="col-span-8 md:col-span-4 lg:col-span-2 h-10 flex items-center bg-white" id="check-in-out">
     <div class="w-full h-full grid-cols-7 gap-0 flex items-center py-2">
       <div class="clo-span-1 flex items-center justify-center cursor-pointer" >
-        <svg-icon class="mx-3" src="{{ 'assets/svg/calendar.svg' }}" [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.7)' }"></svg-icon>
+        <svg-icon class="mx-3" src="{{ 'assets/svg/budget.svg' }}" [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.8)' }"></svg-icon>
       </div>
       <label class="col-span-3 h-full  flex items-center  border-r">
-        <input  class="tex"
-                placeholder="prix"
+        <input  class="tex" matInput
+                placeholder="Votre budget"
                 type="number"
                 [(ngModel)]="prix"
         >
@@ -33,7 +33,7 @@
   <div class="col-span-8 md:col-span-4 lg:col-span-2 h-10 grid grid-cols-7 gap-0 flex items-center bg-white"
        id="emplacement">
     <div class="clo-span-1 flex items-center justify-center cursor-pointer">
-      <svg-icon class="mx-3" src="{{ 'assets/svg/location.svg' }}" [svgStyle]="{ 'width.px':25, 'height.px':25, 'fill': 'rgba(91, 99, 109, 0.7)' }"></svg-icon>
+      <svg-icon class="mx-3" src="{{ 'assets/svg/location.svg' }}" [svgStyle]="{ 'width.px':25, 'height.px':25, 'fill': 'rgba(91, 99, 109, 0.8)' }"></svg-icon>
     </div>
     <div class="col-span-6">
       <mat-select disableOptionCentering panelClass="mat-select-options mat-select-extra-options"

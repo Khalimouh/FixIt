@@ -41,7 +41,8 @@ img {
 }
 
 button,
-input {
+input,
+select {
   font-family: inherit; 
   font-size: 100%; 
   line-height: 1.15; 
@@ -53,7 +54,8 @@ input {
   overflow: visible;
 }
 
-button { 
+button,
+select { 
   text-transform: none;
 }
 
@@ -116,7 +118,6 @@ p {
 button {
   background-color: transparent;
   background-image: none;
-  padding: 0;
 }
 
 button:focus {
@@ -180,7 +181,8 @@ a {
 }
 
 button,
-input {
+input,
+select {
   padding: 0;
   line-height: inherit;
   color: inherit;
@@ -235,6 +237,10 @@ img {
   --border-opacity: 1;
   border-color: #5B636D;
   border-color: rgba(91, 99, 109, var(--border-opacity));
+}
+
+.border-gray-border-1 {
+  border-color: rgba(91, 99, 109, 0.2);
 }
 
 .border-gray-border-2 {
@@ -496,6 +502,10 @@ img {
   padding-right: 0.75rem;
 }
 
+.pr-4 {
+  padding-right: 1rem;
+}
+
 .pb-4 {
   padding-bottom: 1rem;
 }
@@ -510,6 +520,10 @@ img {
 
 .pt-16 {
   padding-top: 4rem;
+}
+
+.pointer-events-none {
+  pointer-events: none;
 }
 
 .absolute {
@@ -651,6 +665,45 @@ img {
   grid-column: span 8 / span 8;
 }
 
+@-webkit-keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse {
+  50% {
+    opacity: .5;
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(-25%);
+    -webkit-animation-timing-function: cubic-bezier(0.8,0,1,1);
+            animation-timing-function: cubic-bezier(0.8,0,1,1);
+  }
+
+  50% {
+    transform: none;
+    -webkit-animation-timing-function: cubic-bezier(0,0,0.2,1);
+            animation-timing-function: cubic-bezier(0,0,0.2,1);
+  }
+}
+
 @media (min-width: 640px) {
 
   .sm\:bg-my-gray-1 {
@@ -733,6 +786,10 @@ img {
 
   .md\:flex {
     display: flex;
+  }
+
+  .md\:hidden {
+    display: none;
   }
 
   .md\:h-12 {

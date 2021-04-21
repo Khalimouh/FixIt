@@ -6,7 +6,7 @@ const main = require("../controllers/main");
 const client = require("../controllers/clientController");
 
 /* GET home page. */
-router.get('/getUser', authController.verifyAccessToken, client.getUser);
+router.get('/user', authController.verifyAccessToken, client.getUser);
 router.get('/',main.test);
 router.post('/signup',authController.emailExists, client.create);
 router.post('/search', main.search);

@@ -10,7 +10,6 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 export class MainSearchComponent implements OnInit {
 
   constructor(private sharedS: SharedService, private http: HttpClient) {}
-  lgScreen = false;
   states = this.sharedS.states;
   annonces = [];
   mission: string;
@@ -19,37 +18,39 @@ export class MainSearchComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.mission = "Mission";
-    this.prix = 0;
-    this.code = "75";
+    this.mission = '';
+    this.prix = null;
+    this.code = '75';
   }
+
+
 
   doSearch(){
     console.log(this.mission, this.prix, this.code);
-    let url = "http://localhost:3000/search?";
+    const url = 'http://localhost:3000/search?';
     const params = new HttpParams()
         .set('metier', this.mission)
         .set('prix', this.prix.toString())
-        .set('code', this.code.slice(0,2));
+        .set('code', this.code.slice(0, 2));
 
     const body = {
       metier: this.mission,
       prix: this.prix,
-      code: this.code.slice(0,2) + "000"
-    }
+      code: this.code.slice(0, 2) + '000'
+    };
     let headers = new HttpHeaders();
-    headers=headers.append('content-type','application/json');
-    headers=headers.append('Access-Control-Allow-Origin', '*');
-    //headers=headers.append('content-type','application/x-www-form-urlencoded');
-    //@ts-ignore
-    this.http.post(url, body,{'header': headers, 'params':params}).subscribe(
+    headers = headers.append('content-type', 'application/json');
+    headers = headers.append('Access-Control-Allow-Origin', '*');
+    // headers=headers.append('content-type','application/x-www-form-urlencoded');
+    // @ts-ignore
+    this.http.post(url, body, {header: headers, params: params}).subscribe(
         (res) => {
           this.sharedS.storeData(res);
         },
         (err) => {
           console.error(err);
         }
-    )
-  };
+    );
+  }
 
 }

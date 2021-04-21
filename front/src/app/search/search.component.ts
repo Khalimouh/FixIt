@@ -13,10 +13,10 @@ export class SearchComponent implements OnInit {
   annonces: any[] = [];
   sub: Subscription;
 
-  constructor(private sharedS:SharedService) {}
+  constructor(private sharedS: SharedService) {}
 
   ngOnInit(): void {
-    this.sub = this.sharedS.ann.subscribe(annonces => this.annonces = annonces)
+    this.sub = this.sharedS.ann.subscribe(annonces => this.annonces = annonces);
     console.log(this.annonces);
   }
 

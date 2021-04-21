@@ -39,7 +39,7 @@ module.exports = {
     },
 
     emailExists: function(req, res, next){
-        userModel.findOne({ email: { $eq : req.body.email} }, function (err, user) {
+        userModel.findOne({ login: { $eq : req.body.login} }, function (err, user) {
             if (err){
                 console.log(err);
                 res.status(401).json({error:"find user error"});
@@ -82,6 +82,8 @@ module.exports = {
     },
 
     verifyAccessToken: function (req, res, next) {
+        console.log(req.headers['authorization']);
+
         let token = req.headers['x-access-token'] || req.headers['authorization'];
         if(!token){
             res.status(401).json({error:"verification token"});
@@ -92,6 +94,7 @@ module.exports = {
             }
             jwt.verify(token, process.env.JWT_ACCESS_KEY, function (err, decoded) {
                 if (err){
+                    console.log(err)
                     res.status(401).json({error:"verification token"});
                 }
                 else

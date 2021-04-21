@@ -15,7 +15,6 @@ import {MainSearchComponent} from './main-search/main-search.component';
 import {NavbarComponent} from './navbar/navbar.component';
 
 import {AngularSvgIconModule} from 'angular-svg-icon';
-import {TranslateModule} from '@ngx-translate/core';
 
 import {navBarDialogs} from './navbar/dialogs/dialogs.components';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -27,7 +26,6 @@ import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
-        TranslateModule,
         RouterModule,
         AngularSvgIconModule.forRoot(),
         FontAwesomeModule,

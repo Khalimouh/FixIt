@@ -9,18 +9,75 @@
            class="text-my-blue-1 text-sm 2xl:text-base border border-my-blue-1 rounded-sm px-4 py-2 2xl:py-3 cursor-pointer hover:shadow"
            matRipple>Proposer un service
       </div>
-      <span (click)="openDialog2()"
-            class="ml-8 text-my-gray-3 text-sm 2xl:text-base border border-my-gray-3 rounded-sm px-4 py-2 2xl:py-3 cursor-pointer hover:shadow"
+      <span (click)="openDialog2()" *ngIf="!(this.authState$ | async).isAuthenticated"
+            class="ml-8 text-sm 2xl:text-base border border-my-gray-3 rounded-sm px-4 py-2 2xl:py-3 cursor-pointer hover:shadow"
             matRipple>Créer un compte
       </span>
-      <span (click)="openDialog3()"
-            class="ml-6 text-sm 2xl:text-base cursor-pointer">S'identifier
+      <span (click)="openDialog3()" *ngIf="!(this.authState$ | async).isAuthenticated"
+            class="ml-6 text-sm 2xl:text-base cursor-pointer">Login
+      </span>
+      <span *ngIf="(this.authState$ | async).isAuthenticated"
+            class="relative ml-5 pr-4 flex items-center cursor-pointer"
+            [matMenuTriggerFor]="menu1">
+        <span class="font-medium text-sm cursor-pointer"
+              mat-button>{{ (this.authState$ | async).user?.nom  }} {{" "}} {{(this.authState$ | async).user?.prenom}}  </span>
+        <mat-menu #menu1="matMenu">
+          <span mat-menu-item routerLink="/profile">Profile</span>
+          <span (click)="onLogoutSubmit()" mat-menu-item>Logout</span>
+        </mat-menu>
+        <fa-icon class="absolute right-0" [icon]="['fal', 'chevron-down']" size="xs" style="color: #5B636D"></fa-icon>
       </span>
 
-      <span class="ml-5 text-sm cursor-pointer">FR</span>
+      <span
+            class="ml-5 text-sm cursor-pointer">FR</span>
     </div>
+    <label (click)="toggleHiddenNav()" class="menu-button md:hidden cursor-pointer">
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+      <div class="bar"></div>
+    </label>
+    <div (click)="toggleHiddenNav()" class="hidden-nav-closer"></div>
+    <div id="hidden-nav-wrapper">
+      <div id="hidden-nav">
+        <div class="hidden-nav-content px-3">
+          <div class="flex flex-col text-my-gray-4">
+            <div (click)="toggleHiddenNav()" class="hidden-nav-item" matRipple>
+              <span class="text-xs"></span>
+            </div>
+            <div (click)="openDialog3(); toggleHiddenNav()" *ngIf="!(this.authState$ | async).isAuthenticated"
+                 class="hidden-nav-item">
+              <span class="text-xs">Login</span>
+            </div>
+            <div (click)="toggleHiddenNav()" *ngIf="(this.authState$ | async).isAuthenticated" class="hidden-nav-item"
+                 routerLink="/profile">
+              <span class="text-xs">{{ (this.authState$ | async).user?.nom  }} {{" "}} {{(this.authState$ | async).user?.prenom}}</span>
+              <fa-icon class="absolute pointer-events-none cursor-pointer"
+                       [icon]="['fal', 'user-circle']" size="lg" style="color: #5B636D; right: 10px; transform: translateX(50%)"></fa-icon>
+            </div>
+            <div (click)="hidden_language.classList.toggle('flex'); hidden_language.classList.toggle('hidden')"
+                 class="hidden-nav-item"
+                 matRipple>
+              <fa-icon class="absolute mt-1 pointer-events-none cursor-pointer"
+                       [icon]="['fal', 'chevron-down']" size="sm" style="color: #5B636D; right: 10px; transform: translateX(50%)"></fa-icon>
+            </div>
+            <div #hidden_language class="hidden-nav-item-select hidden">
+              <span  class="text-xs"
+                    matRipple>FR</span>
 
+            </div>
+            <span (click)="openDialog2(); toggleHiddenNav()" *ngIf="!(this.authState$ | async).isAuthenticated"
+                  class="text-xs border border-gray-border-1 rounded-sm px-4 py-2 cursor-pointer ml-2 mt-4"
+                  matRipple style="width: fit-content">Créer un compte
+            </span>
+            <span (click)="onLogoutSubmit(); toggleHiddenNav()" *ngIf="(this.authState$ | async).isAuthenticated"
+                  class="text-xs border border-gray-border-1 rounded-sm px-4 py-2 cursor-pointer mt-4"
+                  matRipple style="width: fit-content">Log out
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
-
 
