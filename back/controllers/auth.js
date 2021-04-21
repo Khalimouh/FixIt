@@ -5,6 +5,7 @@ const jwt = require('jsonwebtoken');
 
 
 module.exports = {
+
     authenticate: function(req, res, next) {
         userModel.findOne({login: { $eq: req.body.login } }, function(err, user){
             if (err) {
@@ -12,8 +13,8 @@ module.exports = {
                 res.status(401).json({error:"authentication error 1"});
             } else {
                 if(user) {
-                        // if(bcrypt.compareSync(req.body.password, user.password)){
-                        if(req.body.password === user.password){
+                    if(bcrypt.compareSync(req.body.password, user.password)){
+                       // if(req.body.password === user.password){
                             req.user_id = user._id;
                             next();
                         }else {

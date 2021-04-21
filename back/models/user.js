@@ -2,6 +2,7 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const { Schema } = mongoose;
 
+//Extension de structure de
 const Clientschema = new Schema({
     id: Number,
     login: String,
@@ -27,15 +28,11 @@ const Clientschema = new Schema({
 });
 
 //Création d'un middleware de chiffrement à éxécuter avant l'insertion en base
-Clientschema.pre("save",function(){
-    const rounds = 10;
-    const plaintext = this.password;
-    bcrypt.genSaltSync(rounds, "a",function(err, salt) {
-        bcrypt.hashSync(this.password, salt, function(err, hash) {
-            if(err) console.error(err, "Erreur dans le hachage des mots de passes");
-            this.password = hash;
-        });
-    });
+Clientschema.pre("save",async function(next){
+    const SALT_WORK_FACTOR = 10;
+    const salt  = await bcrypt.genSalt(SALT_WORK_FACTOR);
+    this.password =  await bcrypt.hash(this.password, salt);
+    next();
 });
 
 module.exports = mongoose.model("clients", Clientschema);
