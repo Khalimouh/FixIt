@@ -1,7 +1,6 @@
 ﻿const mongoose = require('mongoose');
 const uniqueValidator = require('mongoose-unique-validator');
-const url = "mongodb+srv://groupe8:groupe8@cluster0.n4mow.mongodb.net/FixIt?retryWrites=true&w=majority"
-
+const url = "mongodb+srv://" + process.env.DB_USER + ":" +process.env.DB_PASS+"@cluster0.n4mow.mongodb.net/FixIt?retryWrites=true&w=majority"
 
  mongoose.connect(url, {
         useNewUrlParser: true,
