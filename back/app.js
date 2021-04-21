@@ -13,7 +13,7 @@ require('dotenv').config();
 
 var indexRouter = require('./routes/index');
 
-
+//Crée l'application Express
 var app = express();
 app.set('view engine', 'ejs');
 
@@ -30,8 +30,7 @@ mongoose.connect(url, {
     }
 );
 
-let db = mongoose.connection;
-
+//Chargement des middlewares
 app.use(logger('dev'));
 app.use(helmet());
 app.use(cors());
