@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 
 
 module.exports = {
+    //Insére l'utilisateur dans la collection User puis le renvoie
     create: function(req, res, next){
        Client.create(req.body, function(err, client){
            //Gére les erreurs
@@ -13,7 +14,7 @@ module.exports = {
            }
        });
     },
-
+    //Récupére un utilisateur en fonction de son id
     getUser: function(req, res, next){
         Client.findOne({_id: mongoose.Types.ObjectId(req.user_id)}, function (err, user) {
             if(err) {
