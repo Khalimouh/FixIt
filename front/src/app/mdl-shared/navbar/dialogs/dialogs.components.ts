@@ -28,12 +28,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
             return;
         }
         const info = {
-            Nom: this.registerForm.value.nom,
+            nom: this.registerForm.value.nom,
             prenom: this.registerForm.value.prenom,
             password: this.registerForm.value.password,
-            email: this.registerForm.value.email
+            login: this.registerForm.value.email,
+            tel: this.registerForm.value.ntel
         };
         this.store.dispatch(new SignUp(info));
+        this.closeDialog();
     }
 
     closeDialog() {
@@ -43,9 +45,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.registerForm = this.formBuilder.group({
             conditions: [false, Validators.required],
-            fullName: ['', Validators.required],
+            nom: ['', Validators.required],
+            prenom: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(8)]]
+            password: ['', [Validators.required, Validators.minLength(8)]],
+            ntel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
         });
     }
 
@@ -61,18 +65,18 @@ export class SignUpComponent implements OnInit, OnDestroy {
         private store: Store<AppState>,
         private updates$: Actions,
     ) {
-        updates$.pipe(
-            ofType(AuthActionTypes.SUCCESS, AuthActionTypes.FAILURE),
-            takeUntil(this.destroyed$),
-            tap((action: AUTH_ACTIONS) => {
-                if (action.type === '[USER AUTH] failure') {
-                    this.errorCode = 'code' + action.payload.error.error.code;
-                    this.store.dispatch(new ResetMessages('FailureMessage'));
-                } else {
-                    this.closeDialog();
-                }
-            })
-        ).subscribe();
+        // updates$.pipe(
+        //     ofType(AuthActionTypes.SUCCESS, AuthActionTypes.FAILURE),
+        //     takeUntil(this.destroyed$),
+        //     tap((action: AUTH_ACTIONS) => {
+        //         if (action.type === '[USER AUTH] failure') {
+        //             this.errorCode = 'code' + action.payload.error.error.code;
+        //             this.store.dispatch(new ResetMessages('FailureMessage'));
+        //         } else {
+        //
+        //         }
+        //     })
+        // ).subscribe();
     }
 }
 

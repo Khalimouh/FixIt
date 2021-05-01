@@ -5,6 +5,8 @@ const mongoose = require("mongoose");
 module.exports = {
     //Insére l'utilisateur dans la collection User puis le renvoie
     create: function(req, res, next){
+        console.log(req.body)
+        req.body.photo = "default_profile.jpg"
        Client.create(req.body, function(err, client){
            //Gére les erreurs
            if(err) console.error(err, "Erreur dans la création du client dans mongoDB");

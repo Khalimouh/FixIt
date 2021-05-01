@@ -12,10 +12,7 @@ const Clientschema = new Schema({
     adresse: String,
     tel: Number,
     mail: String,
-    photo:{
-        data: Buffer,
-        info: String
-    },
+    photo:String,
     identite:{
         data: Buffer,
         info: String

@@ -1,0 +1,124 @@
+<div class="text-my-gray-3" id="wrapper">
+  <!-- Header ====================================================================================================== -->
+  <header class="h-16 2xl:h-24 w-full px-6 md:px-12 lg:px-24 2xl:px-32 flex justify-between items-center">
+    <img width="90px" src="assets/images/logo.svg" class="cursor-pointer" [routerLink]="['/']">
+    <div class="flex items-center">
+      <span class="lg:text-sm flex items-center mr-5 cursor-pointer" [routerLink]="['/profile']">
+        <fa-icon class="mx-2" [icon]="['fal', 'home-lg']" size="lg" style="color: #5B636D"></fa-icon>
+        <span>Mes Services</span>
+      </span>
+      <div class="h-10 w-10 my-boredr border-my-blue-1">
+        <img alt="avatar" class="h-full w-full" src="assets/images/Rectangle 20.png">
+      </div>
+    </div>
+  </header>
+
+  <!-- Sub header ================================================================================================== -->
+  <div class="h-24 2xl:h-32 w-full px-6 md:px-12 lg:px-24 2xl:px-32 flex items-center bg-my-blue-1">
+    <div class="h-16 w-16 2xl:w-24 2xl:h-24 my-border">
+      <img alt="avatar" class="h-full w-full" src="assets/images/avatar.png">
+    </div>
+    <div class="h-full ml-4 flex flex-col justify-center">
+      <span class="text-white text-2xl font-bold ">{{ authState.user?.nom + ' ' + authState.user?.prenom }}</span>
+    </div>
+  </div>
+
+
+
+  <!-- Tab1 ======================================================================================================== -->
+  <div
+    class="grid grid-cols-4 gap-2 row-gap-3 w-full lg:w-3/4 2xl:w-3/5 mt-12 2xl:mt-14 px-6 md:px-12 lg:px-24 2xl:px-32 mb-10 mt-3"
+    id="tab1">
+    <!-- Bienvenue ==== -->
+    <div class="col-span-4 flex items-center mb-3">
+      <span class="section-label ml-2">Information sur le Service</span>
+      <div class="blue_line"></div>
+    </div>
+    <div class="input-wrapper col-span-1">
+      <div style="font-size: 1.2rem">
+        <fa-icon class="mx-2" [icon]="['fal', 'hotel']" size="1x" style="color: #5B636D"></fa-icon>
+      </div>
+      <input (focus)="input_focused($event.target)"  class="my-input"
+             placeholder="Intitulé du service"
+             type="text"><!--// INPUT //-->
+    </div>
+    <div class="input-wrapper col-span-1">
+      <div style="font-size: 1.2rem">
+        <fa-icon class="mx-2" [icon]="['fal', 'map-marked-alt']" size="1x" style="color: #5B636D"></fa-icon>
+      </div>
+      <mat-select (focus)="input_focused($event.target)" (openedChange)="mat_toggled($event)"
+                  disableOptionCentering panelClass="my-mat-select" placeholder="Service Tag">
+        <!--// INPUT //-->
+        <mat-option *ngFor="let tag of tags" [value]="tag">{{tag}}</mat-option>
+      </mat-select>
+      <fa-icon class="absolute right-0 mx-3 mt-1 pointer-events-none cursor-pointer"
+               (click)="arrow_down_clicked()"
+               [icon]="['fal', 'chevron-down']" size="1x" style="color: #5B636D"></fa-icon>
+    </div>
+    <div class="input-wrapper col-span-1">
+      <div style="font-size: 1.2rem">
+        <fa-icon class="mx-2" [icon]="['fal', 'phone-rotary']" size="1x" style="color: #5B636D"></fa-icon>
+      </div>
+      <input (focus)="input_focused($event.target)" class="my-input"
+             placeholder="Prix minimum / Jour"
+             type="number"><!--// INPUT //-->
+    </div>
+    <div class="input-wrapper col-span-1">
+      <div style="font-size: 1.2rem">
+        <fa-icon class="mx-2" [icon]="['fal', 'phone-rotary']" size="1x" style="color: #5B636D"></fa-icon>
+      </div>
+      <input (focus)="input_focused($event.target)" class="my-input"
+             placeholder="Prix maximum / Jour"
+             type="number"><!--// INPUT //-->
+    </div>
+
+
+    <div class="col-span-4 flex items-center mt-4 mb-3">
+      <span class="section-label">Description</span>
+      <div class="blue_line"></div>
+    </div>
+
+    <div class="border border-my-gray-3 col-span-4 h-full">
+      <div class="flex-grow h-full flex items-center">
+        <textarea  class="my-input h-full" rows="10"
+                     placeholder="Décrir votre service, vos compétances ..."></textarea>
+        <!--// INPUT //-->
+      </div>
+    </div>
+
+      <!-- Galerie des photos ==== -->
+      <div class="col-span-4 flex items-center">
+        <span class="section-label">Galerie photos</span>
+        <div class="blue_line"></div>
+      </div>
+      <div (fileDropped)="onFileDropped($event)" appDragDrop
+           class="col-span-4 border-4 border-dashed border-my-gray-3 flex flex-col items-center p-10">
+        <fa-icon class="mb-5" [icon]="['fal', 'images']" size="5x" style="color: #5B636D"></fa-icon>
+
+        <span class="font-thin text-xs m-1">Ajouter une photo</span>
+        <span class="font-bold text-sm m-1">faites glisser et déposez votre photo ici</span>
+
+      </div>
+      <div *ngFor="let img of editedImages; let i = index" class="col-span-1">
+        <div class="relative w-full" style="padding-bottom: 100%;">
+          <img [src]="img.imageSRC" alt="" class="absolute top-0 h-full object-cover">
+        </div>
+        <span (click)="deleteFile(i)" class="w-full bg-my-gray-3 flex items-center justify-center py-2 cursor-pointer">
+        <fa-icon class="mr-2" [icon]="['fal', 'trash-alt']" size="1x" style="color: #FFFFFF"></fa-icon>
+        <span class="text-xs font-thin text-white">Supprimer</span>
+      </span>
+      </div>
+
+
+    <!-- continue button ==== -->
+    <div class="col-span-4"></div>
+    <button  class="col-span-1 btn-continue" matRipple type="submit">Continuer</button>
+
+  </div>
+
+
+
+
+
+</div>
+

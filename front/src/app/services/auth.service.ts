@@ -48,7 +48,7 @@ export class AuthService {
   }
 
   signup(data) {
-    return this.http.post<any>(`${this.BASE_URL}/auth/signUp`, data)
+    return this.http.post<any>(`${this.BASE_URL}/signup`, data)
       .pipe(tap(res => { this.setToken(res); }));
   }
 

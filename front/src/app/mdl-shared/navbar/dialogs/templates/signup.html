@@ -14,26 +14,25 @@
                     <svg-icon class="mx-3" src="{{ 'assets/svg/logo.svg' }}"
                               [svgStyle]="{ 'width.px':120 }"></svg-icon>
                 </div>
-                <span class="text-gray-600 text-sm font-thin mb-2">Je certifie avoir pris connaissance des termes et conditions d’utilisation de la plateforme</span>
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mb-2">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/user.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
-                        <input class="my-input pr-3" formControlName="fullName"
-                               placeholder="Votre nom" type="text">
+                        <input class="my-input pr-3" formControlName="nom"
+                               placeholder="Nom" type="text">
                     </label>
                 </div>
-                <span *ngIf="submitted && registerForm['controls'].nom.errors"
+                <span *ngIf="submitted && registerForm['controls'].prenom.errors"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ce champ est requis</span>
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/user.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
-                        <input class="my-input pr-3" formControlName="fullName"
-                               placeholder="Votre prenom" type="text">
+                        <input class="my-input pr-3" formControlName="prenom"
+                               placeholder="prenom" type="text">
                     </label>
                 </div>
-                <span *ngIf="submitted && registerForm['controls'].prenom.errors"
+                <span *ngIf="submitted && registerForm['controls'].email.errors"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ce champ est requis</span>
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/mail.svg' }}"
@@ -44,13 +43,22 @@
                                type="email" name="email" autocomplete="email" >
                     </label>
                 </div>
-                <span *ngIf="submitted && registerForm['controls'].email.errors"
-                      class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Email not valid</span>
+                <span *ngIf="submitted && registerForm['controls'].ntel.errors"
+                      class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ce champ est requis</span>
+                <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
+                    <svg-icon class="mx-3" src="{{ 'assets/svg/mail.svg' }}"
+                              [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
+                    <label class="flex items-stretch h-full w-full">
+                        <input class="my-input pr-3" formControlName="ntel"
+                               placeholder="N° de Tel"
+                               type="number" name="NTel"  >
+                    </label>
+                </div>
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/lock.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
-                        <input class="my-input pr-3" formControlName="password" placeholder="Password"
+                        <input class="my-input pr-3" formControlName="password" placeholder="Mote de passe"
                                type="password" autocomplete="current-passwor">
                     </label>
                 </div>
