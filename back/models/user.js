@@ -33,3 +33,5 @@ Clientschema.pre("save",async function(next){
 });
 
 module.exports = mongoose.model("clients", Clientschema);
+
+

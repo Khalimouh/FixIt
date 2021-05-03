@@ -19,8 +19,7 @@ export class ProfileInfoDialogComponent implements OnDestroy{
               @Inject(MAT_DIALOG_DATA) public data: { state$: Observable<AuthState>, toast: ToastrService }) {
     data.state$.pipe(takeUntil(this.destroyed$)).subscribe( state => {
       this.editedImage.imageSRC = this.domSanitizer.sanitize(SecurityContext.URL, 'http://127.0.0.1:3000/' + state.user?.photo);
-      this.currentFullName = state.user?.nom ? state.user?.nom : undefined;
-      this.fullName = state.user?.nom ? state.user?.nom : undefined;
+      this.fullName = state.user?.nom + ' ' + state.user?.prenom;
       if (state.SuccessMessage?.split(':')[0] === 'userInfo') {
         this.closeDialog();
         data.toast.success('Profile information successfully updated.', '', { positionClass: 'toast-top-center', timeOut: 4000 });
@@ -60,8 +59,10 @@ export class ProfileInfoDialogComponent implements OnDestroy{
     if (!this.newImage && this.fullName === this.currentFullName) { this.errorMessage = 'No changes !!!'; }
     else {
       if (this.newImage && this.image.size < 1000000) {
-        fd.append('image', this.image);
+        fd.append('photo', this.image);
       }
+      fd.append('nom', this.fullName.split(' ')[0]);
+      fd.append('prenom', this.fullName.split(' ')[1]);
       this.store.dispatch(new UserEditInfo(fd));
       this.uploading = true;
     }
@@ -84,7 +85,7 @@ export class EditEmailDialogComponent implements OnDestroy {
               private store: Store<AppState>,
               @Inject(MAT_DIALOG_DATA) public data: { state$: Observable<AuthState>, toast: ToastrService }) {
     data.state$.pipe(takeUntil(this.destroyed$)).subscribe( state => {
-      this.email = state.user.login;
+      this.login = state.user.login;
       if (state.SuccessMessage?.split(':')[0] === 'userInfo') {
         this.closeDialog();
         data.toast.success('Email successfully updated.', '', { positionClass: 'toast-top-center', timeOut: 4000 });
@@ -97,11 +98,11 @@ export class EditEmailDialogComponent implements OnDestroy {
     });
   }
   destroyed$ = new Subject<boolean>();
-  email = '';
+  login = '';
   errorMessage: string;
   saveEmail() {
     const fd = new FormData();
-    fd.append('email', this.email);
+    fd.append('login', this.login);
     this.store.dispatch(new UserEditInfo(fd));
   }
   closeDialog() {
@@ -122,7 +123,7 @@ export class EditPhoneDialogComponent implements OnDestroy {
               private store: Store<AppState>,
               @Inject(MAT_DIALOG_DATA) public data: { state$: Observable<AuthState>, toast: ToastrService }) {
     data.state$.pipe(takeUntil(this.destroyed$)).subscribe( state => {
-      this.phone = state.user.tel ? state.user.tel : '';
+      this.tel = state.user.tel ? state.user.tel : '';
       if (state.SuccessMessage?.split(':')[0] === 'userInfo') {
         this.closeDialog();
         data.toast.success('Phone number successfully updated.', '', { positionClass: 'toast-top-center', timeOut: 4000 });
@@ -135,11 +136,11 @@ export class EditPhoneDialogComponent implements OnDestroy {
     });
   }
   destroyed$ = new Subject<boolean>();
-  phone = '';
+  tel = '';
   errorMessage: string;
   savePhoneNumber() {
     const fd = new FormData();
-    fd.append('phone', this.phone.split('-').join(''));
+    fd.append('tel', this.tel);
     this.store.dispatch(new UserEditInfo(fd));
   }
   closeDialog() {

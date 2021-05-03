@@ -20,13 +20,13 @@ a {
   background-color: transparent;
 }
 
+b {
+  font-weight: bolder;
+}
+
 code {
   font-family: monospace, monospace; 
   font-size: 1em; 
-}
-
-small {
-  font-size: 80%;
 }
 
 sub {

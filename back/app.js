@@ -8,7 +8,7 @@ var bodyparser = require('body-parser');
 var helmet = require('helmet');
 var cors = require("cors");
 const auth = require('./routes/auth');
-
+const RateLimit = require('express-rate-limit');
 require('dotenv').config();
 
 var indexRouter = require('./routes/index');
@@ -16,6 +16,14 @@ var indexRouter = require('./routes/index');
 //Crée l'application Express
 var app = express();
 app.set('view engine', 'ejs');
+
+//rate limiter pour empecher les attaques par dos
+const limiter = new RateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 100, // limit each IP to 100 requests per windowMs
+    delayMs: 0 // disable delaying - full speed until the max limit is reached
+});
+app.use(limiter);
 
 const url = "mongodb+srv://" + process.env.DB_USER + ":" +process.env.DB_PASS+"@cluster0.n4mow.mongodb.net/FixIt?retryWrites=true&w=majority";
 mongoose.connect(url, {
