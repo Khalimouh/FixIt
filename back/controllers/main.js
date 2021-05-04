@@ -1,4 +1,5 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Annonces = require("../models/annonce")
 
 module.exports = {
     test: function (req, res, next) {
@@ -30,5 +31,18 @@ module.exports = {
                 res.status(200).json(uniqueres);
             });
 
+    },
+    //Dépot d'annonces
+    submit: function(req,res){
+        console.log(req.body.id)
+        Annonces.create(req.body, function(err, ann){
+            if(err) console.error(err, "Erreur dans la création de l'annonce")
+            else{
+                res.status(200)
+            }
+        })
+        res.status(200).json({res: "OK"})
     }
+
+
 };

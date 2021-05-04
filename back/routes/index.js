@@ -44,5 +44,7 @@ router.get('/',main.test);
 router.post('/signup',authController.emailExists, client.create);
 /* POST renvoie les resultats de la recherche par mots clé*/
 router.post('/search', main.search);
+/* POST cree une annonce a partir des données du formulaire */
+router.post('/submit',authController.verifyAccessToken ,upload.array('photo',3), main.submit)
 
 module.exports = router;
