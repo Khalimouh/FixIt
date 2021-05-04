@@ -9,11 +9,8 @@ const Annonceschema = new Schema({
     tarifmax: Number,
     artisantid: Number,
     avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: Date}],
-    tags: String,
-    photo:{
-        data: Buffer,
-        info: String
-    },
+    tag: String,
+    photo: Buffer,
     code: Number
 });
 
