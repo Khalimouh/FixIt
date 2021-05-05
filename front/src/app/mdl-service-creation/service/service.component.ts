@@ -5,6 +5,7 @@ import {Observable, Subject} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {AuthState} from '../../store/reducers/auth.reducers';
 import {AppState} from '../../store/app.states';
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 
 @Component({
   selector: 'app-hotel-creation',
@@ -12,12 +13,19 @@ import {AppState} from '../../store/app.states';
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit, OnDestroy {
+  nom : string;
+  tarifmin : any;
+  tarifmax : any;
+  description : string;
+  tag: string;
+  photo: any[];
 
   /** Constructor ==================================================================================================> */
   constructor(
     private sharedS: SharedService,
     private ngZone: NgZone,
     private store: Store<AppState>,
+    private http: HttpClient
   ) {
     this.authState$ = store.select(state => state.auth);
     this.loadOptions();
@@ -37,8 +45,16 @@ export class ServiceComponent implements OnInit, OnDestroy {
   editedImages = [];
 
 
+
+
   /** On_init ======================================================================================================> */
   ngOnInit(): void {
+    this.nom = '';
+    this.tarifmin = 0;
+    this.tarifmax = 0;
+    this.description = '';
+    this.tag = '';
+    this.photo = null;
   }
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -111,6 +127,37 @@ export class ServiceComponent implements OnInit, OnDestroy {
     this.editedImages.splice(index, 1);
     this.images.splice(index, 1);
   }
+
+  /** POST form ===============================================================> */
+  SubmitService(){
+    console.log("clicked");
+    console.log(this.authState.user);
+    console.log(this.tag,this.description,this.nom,this.tarifmax,this.tarifmin);
+    let body = {
+      photo : this.photo,
+      nom : this.nom,
+      tag: this.tag,
+      tarifmin: this.tarifmin,
+      tarifmax: this.tarifmax,
+      description: this.description,
+      user: this.authState.user.nom
+
+    };
+    const url = 'http://localhost:3000/submit';
+    let head = new HttpHeaders();
+    head = head.append('content-type', 'application/json');
+    head= head.append('Access-Control-Allow-Origin', '*');
+    this.http.post(url, body,{headers:head}).subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.error(err);
+        }
+    );
+  }
+
+
 
 
 
