@@ -19,8 +19,8 @@ export class MainSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.mission = '';
-    this.prix = null;
-    this.code = '75';
+    this.prix = 0;
+    this.code = '';
   }
 
 
@@ -28,11 +28,6 @@ export class MainSearchComponent implements OnInit {
   doSearch(){
     console.log(this.mission, this.prix, this.code);
     const url = 'http://localhost:3000/search?';
-    const params = new HttpParams()
-        .set('metier', this.mission)
-        .set('prix', this.prix.toString())
-        .set('code', this.code.slice(0, 2));
-
     const body = {
       metier: this.mission,
       prix: this.prix,
@@ -43,7 +38,7 @@ export class MainSearchComponent implements OnInit {
     headers = headers.append('Access-Control-Allow-Origin', '*');
     // headers=headers.append('content-type','application/x-www-form-urlencoded');
     // @ts-ignore
-    this.http.post(url, body, {header: headers, params: params}).subscribe(
+    this.http.post<any>(url, body, {headers: headers}).subscribe(
         (res) => {
           this.sharedS.storeData(res);
         },
