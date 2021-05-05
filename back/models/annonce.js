@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const {Schema} = mongoose;
 
 const Annonceschema = new Schema({
-    AnnonceID: Number,
+    Annonceid: Number,
     nom: String,
     description: String,
     tarifmin: Number,

@@ -34,23 +34,24 @@ module.exports = {
     },
     //Dépot d'annonces
     submit: function(req,res){
-        let obj = req.body;
+
         Annonces.countDocuments({}, function(err,nb){
             if(err) console.error(err, "Erreur dans le comptage des documents de la collection artisant")
             else{
-                //console.log(nb)
+                let obj = req.body;
+                console.log(nb)
                 obj.Annonceid = nb
-            }}
-        );
-        obj.photo = req.body.image;
-        //console.log(obj)
-        Annonces.create(obj, function(err, ann){
-            if(err) console.error(err, "Erreur dans la création de l'annonce")
-            else{
-                res.status(200)
-            }
-        })
-        res.status(200).json({res: "OK"})
+                obj.photo = req.body.image;
+                console.log(obj)
+                Annonces.create(obj, function(err, ann){
+                    if(err) console.error(err, "Erreur dans la création de l'annonce")
+                    else{
+                        res.status(200)
+                    }
+                })
+                res.status(200).json({res: "OK"})
+            }});
+
     }
 
 
