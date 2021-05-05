@@ -1,4 +1,8 @@
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
+const Annonces = require("../models/annonce")
+const Users = require("../models/user")
+const jwtdecode = require("jwt-decode")
+
 
 module.exports = {
     test: function (req, res, next) {
@@ -30,5 +34,27 @@ module.exports = {
                 res.status(200).json(uniqueres);
             });
 
+    },
+    //Dépot d'annonces
+    submit: function(req,res){
+        //console.log(req.headers);
+        Annonces.countDocuments({}, async function(err,nb){
+            if(err) console.error(err, "Erreur dans le comptage des documents de la collection artisant")
+            else{
+                let obj = req.body;
+                obj.Annonceid = nb;
+                obj.user = req.user_id;
+                obj.photo = req.body.photo;
+                console.log(obj)
+                Annonces.create(obj, function(err, ann){
+                    if(err) console.error(err, "Erreur dans la création de l'annonce")
+                    else{
+                        res.status(200)
+                    }
+                })
+            }});
+
     }
+
+
 };

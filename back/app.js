@@ -7,7 +7,9 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var helmet = require('helmet');
 var cors = require("cors");
+var jimp = require("jimp");
 const auth = require('./routes/auth');
+
 const RateLimit = require('express-rate-limit');
 require('dotenv').config();
 
@@ -44,6 +46,10 @@ app.use(helmet());
 app.use(cors());
 app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.raw({
+    type: 'image/png',
+    limit: '10mb'
+}));
 app.use(cookieParser());
 //defini un dossier statique accessible par le navigateur
 app.use(express.static(path.join(__dirname, 'public')));
