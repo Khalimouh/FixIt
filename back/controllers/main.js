@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
 const Annonces = require("../models/annonce")
+const Users = require("../models/user")
+const jwtdecode = require("jwt-decode")
+
 
 module.exports = {
     test: function (req, res, next) {
@@ -34,14 +37,14 @@ module.exports = {
     },
     //Dépot d'annonces
     submit: function(req,res){
-
-        Annonces.countDocuments({}, function(err,nb){
+        //console.log(req.headers);
+        Annonces.countDocuments({}, async function(err,nb){
             if(err) console.error(err, "Erreur dans le comptage des documents de la collection artisant")
             else{
                 let obj = req.body;
-                console.log(nb)
-                obj.Annonceid = nb
-                obj.photo = req.body.image;
+                obj.Annonceid = nb;
+                obj.user = req.user_id;
+                obj.photo = req.body.photo;
                 console.log(obj)
                 Annonces.create(obj, function(err, ann){
                     if(err) console.error(err, "Erreur dans la création de l'annonce")
@@ -49,7 +52,6 @@ module.exports = {
                         res.status(200)
                     }
                 })
-                res.status(200).json({res: "OK"})
             }});
 
     }
