@@ -2,7 +2,7 @@ const mongoose = require("mongoose")
 const bcrypt = require("bcrypt")
 const encrypt = require('mongoose-encryption');
 const { Schema } = mongoose;
-
+require('dotenv').config();
 
 //Extension de structure de
 const Clientschema = new Schema({
@@ -27,8 +27,8 @@ const Clientschema = new Schema({
 });
 
 //TODO: Déplacer les clé dans le .env et trouver un moyen d'implémenter un key vault local from scratch
-let encKey = process.AESK
-let signKey = process.HMACK
+let encKey = process.env.AESK
+let signKey = process.env.HMACK
 
 //Chiffrement et signature des données sensibles des champs sensibles
 //TODO: Ajouter au fûr et a mesure les cfhamps a chiffrer etou signer
