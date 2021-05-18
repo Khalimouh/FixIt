@@ -39,8 +39,15 @@ module.exports = {
             else{
                 let obj = req.body;
                 obj.Annonceid = nb;
-                obj.user = req.user_id;
+                obj.user = mongoose.Types.ObjectId(req.user_id);
                 obj.photo = req.body.photo;
+                today = new Date();
+                var dd = today.getDate();
+                var mm = today.getMonth()+1; 
+                var yyyy = today.getFullYear();
+                obj.date = dd+'/'+mm+'/'+yyyy;
+                obj.avis = [{idclient: 0, noteservice: 0, notetemps: 0, NoteCom: 0,desc:0, date: obj.date}];
+                obj.dispo = true;
                 console.log(obj)
                 Annonces.create(obj, function(err, ann){
                     if(err) console.error(err, "Erreur dans la création de l'annonce")
