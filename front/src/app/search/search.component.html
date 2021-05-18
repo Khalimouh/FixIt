@@ -41,8 +41,8 @@
         <li *ngFor="let ann of annonces | slice:0:5 ">
        <div class="info-card sm:flex sm:h-full mt-4">
         <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5" >
-          <span class="flex items-start">
-            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4" >Annonce n°: {{ann.Annonceid}}  par {{ann.artiantid}}</span>
+          <span class="flex items-start" routerLink="/detail">
+            <span class="font-bold text-sm leading-none mr-2 text-my-gray-4">Annonce n°: {{ann.Annonceid}}  par {{ann.artiantid}}</span>
             <span class="font-bold text-sm leading-none mr-2 text-my-gray-4" >Catégorie : {{ann.tag}}</span>
             <span class="font-bold text-sm leading-none mr-2 text-my-gray-4" > {{ann.nom}}</span>
           </span>

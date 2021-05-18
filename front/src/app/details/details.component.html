@@ -1,0 +1,207 @@
+<app-navbar></app-navbar>
+<div class="flex items-center justify-center w-full bg-my-blue-2">
+    <div class="w-full xl:w-3/4 2xl:w-3/5 py-6 px-4 md:px-12 lg:px-24 xl:px-0">
+        <app-main-search></app-main-search>
+    </div>
+</div>
+<div class="w-full xl:w-3/4 2xl:w-3/5 px-4 md:px-12 lg:px-24 xl:px-0 mx-auto text-my-gray-4">
+    <div class="w-full grid grid-cols-4 gap-4 my-4">
+        <div class="col-span-4 md:col-span-3 rounded bg-my-gray-1 flex items-center justify-between px-6 py-4">
+            <!-- basic Info -------------------------------->
+            <div class="flex flex-col justify-between items-start">
+                <span class="p-1 px-2 text-white text-xs bg-my-blue-2 rounded-md hidden md:flex">Plombier</span>
+                <div class="flex items-center">
+          <span class="font-bold text-lg mt-2 md:flex items-center">
+            <span class="leading-none">Bernard Thomas</span>
+
+          </span>
+                </div>
+                <span class="font-thin text-sm mt-1">78 - Les Yvelines</span>
+            </div>
+
+            <div class="c100 p90 blue">
+                <div>Prix par jour,</div> <span>A partir de:
+</span> 100 EUR
+                <div class="slice">
+                    <div class="bar"></div>
+                    <div class="fill"></div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-span-4 md:col-span-1 rounded bg-my-gray-1 flex flex-col px-1 py-1">
+            <div class="flex items-center">
+                <div class="relative" >
+                    <fa-icon [fixedWidth]="true" rotate="270" [icon]="['fas', 'bookmark']"
+                             size="3x" style="color: #0C568B; margin-left: -6px"></fa-icon>
+                    <span class="absolute text-sm text-white font-bold leading-none"
+                          style="top: 50%; left: 0; transform: translate(40%, -50%)">9.7</span>
+                </div>
+                <div class="ml-4 flex flex-col">
+                    <span class="font-thin text-sm leading-none mb-1">Exelent</span>
+                    <span class="font-thin leading-none text-xs">
+            15 / <span class="font-semibold text-my-blue-2">19 votes</span>
+          </span>
+                </div>
+            </div>
+            <div class="flex md:flex-col">
+        <span class="p-1 px-2 text-white bg-my-blue-2 rounded-full leading-none my-1 flex items-end"
+              style="font-size: 10px; align-self: start">
+          <span>Respect des délais</span>
+          <fa-icon class="mx-1" [icon]="['fas', 'thumbs-up']" size="sm" style="color: #0ABF32; margin-bottom: 1px"></fa-icon>
+          <span>12</span>
+        </span>
+                <span class="p-1 px-2 text-white bg-my-blue-2 rounded-full leading-none my-1 flex items-end"
+                      style="font-size: 10px; align-self: start">
+          <span>Qualité de service</span>
+          <fa-icon class="mx-1" [icon]="['fas', 'thumbs-up']" size="sm" style="color: #0ABF32; margin-bottom: 1px"></fa-icon>
+          <span>08</span>
+        </span>
+                <span class="p-1 px-2 text-white bg-my-blue-2 rounded-full leading-none my-1 flex items-end"
+                      style="font-size: 10px; align-self: start">
+          <span>Communication</span>
+          <fa-icon class="mx-1" [icon]="['fas', 'thumbs-up']" size="sm" style="color: #0ABF32; margin-bottom: 1px"></fa-icon>
+          <span>08</span>
+        </span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="w-full relative" style="padding-bottom: 33%;">
+        <div class="grid grid-rows-2 grid-cols-6 grid-flow-col-dense gap-2 absolute w-full h-full">
+            <div class="bg-gray-300 row-span-2 col-span-4 "><img class="h-full w-full object-cover"
+                                                                 src="assets/images/1.jpg"></div>
+            <div class="bg-gray-300 row-span-1 col-span-1 "><img class="h-full w-full object-cover"
+                                                                 src="assets/images/2.jpg"></div>
+            <div class="bg-gray-300 row-span-1 col-span-1 "><img class="h-full w-full object-cover"
+                                                                 src="assets/images/3.jpg"></div>
+            <div class="bg-gray-300 row-span-1 col-span-1 "><img class="h-full w-full object-cover"
+                                                                 src="assets/images/4.jpg"></div>
+            <div class="bg-gray-300 row-span-1 col-span-1 relative">
+                <img class="h-full w-full object-cover" src="assets/images/2.jpg">
+                <div class="absolute w-full h-full top-0 flex flex-col items-center justify-center"
+                     style="background-color: rgba(91, 99, 109, 0.7);">
+                    <span class="text-lg text-white font-bold leading-none">+12</span>
+                    <span class="text-lg text-white font-bold leading-none">Photos</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Infos ================================================================================================================================ -->
+    <div class="w-full relative mt-4 grid grid-cols-4 gap-2">
+        <div class="col-span-4 md:col-span-3">
+            <div class="border border-gray-border-1 rounded ">
+
+                <!-- Comment section ======================================================================================= -->
+                <div class="slide-wrapper h-full">
+                    <div class="slide-container">
+                        <div class="comment">
+            <span class="content">
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula
+            </span>
+                            <span class="author">Karim Mirak le 12/05/2020</span>
+                        </div>
+                        <div class="comment">
+            <span class="content">
+              Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula
+            </span>
+                            <span class="author">Karim Mirak le 12/05/2020</span>
+                        </div>
+                    </div>
+                    <div class="slide-btn" id="slideBack" type="button">
+                        <fa-icon [icon]="['fal', 'chevron-left']" size="lg" style="color: #5B636D;"></fa-icon>
+                    </div>
+                    <div class="slide-btn" id="slideNext" type="button">
+                        <fa-icon [icon]="['fal', 'chevron-right']" size="lg" style="color: #5B636D;"></fa-icon>
+                    </div>
+                </div>
+                <!-- Comment section end =================================================================================== -->
+
+                <!-- Services notes section ================================================================================ -->
+                <div class="flex items-center py-2">
+                    <div class="service-note">
+                        <div style="font-size: 1.2rem">
+                            <fa-icon class="mr-3" [icon]="['fal', 'concierge-bell']" size="lg" style="color: #0C568B"></fa-icon>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="remarque text-xs md:text-sm leading-none">Respect des délais</span>
+                            <span class="note">
+                    <span class="font-bold text-my-blue-2 mr-1">9.7</span>
+                    <span class="font-thin">Score de service</span>
+                  </span>
+                        </div>
+                    </div>
+                    <div class="service-note">
+                        <div style="font-size: 1.2rem">
+                            <fa-icon class="mr-3" [icon]="['fal', 'user-tie']" size="lg" style="color: #0C568B"></fa-icon>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="remarque text-xs md:text-sm leading-none">Qualité de service</span>
+                            <span class="note">
+                    <span class="font-bold text-my-blue-2 mr-1">9.7</span>
+                    <span class="font-thin">Score de service</span>
+                  </span>
+                        </div>
+                    </div>
+                    <div class="service-note">
+                        <div style="font-size: 1.2rem">
+                            <fa-icon class="mr-3" [icon]="['fal', 'envelope-open-text']" size="lg" style="color: #0C568B"></fa-icon>
+                        </div>
+                        <div class="flex flex-col items-center md:items-start">
+                            <span class="remarque text-xs md:text-sm leading-none">Communication</span>
+                            <span class="note">
+                    <span class="font-bold text-my-blue-2 mr-1">9.7</span>
+                    <span class="font-thin">Score de service</span>
+                  </span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Services notes section end ============================================================================ -->
+            </div>
+
+            <div class="border border-gray-border-1 rounded flex items-center mt-4">
+                <div class="bg-my-gray-1 p-6 hidden md:flex items-center">
+                    <fa-icon [fixedWidth]="true" [icon]="['fas', 'bookmark']" size="2x" style="color: #0ABF32; transform: rotate(-17deg)"></fa-icon>
+                </div>
+                <div class="flex flex-col justify-center px-5">
+                    <span class="text-xs font-bold">Moins cher que 78% des plombiers de la région des Yvelines au cours des dernières 24 heures</span>
+                    <span class="text-xs font-thin mt-1">Moins cher que 78% de tous les plombiers en Ile-de-France au cours des dernières 24 heures</span>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="w-full mt-4 flex flex-col md:flex-row md:items-center py-2 ">
+        <div class="flex flex-col py-2 mr-3">
+            <div class="flex items-center mt-1">
+                <fa-icon class="mr-2" [icon]="['fas', 'badge-check']" size="1x" style="color: #0ABF32"></fa-icon>
+                <span class="text-lm font-bold">3 Certificats de qualification professionnels</span>
+            </div>
+        </div>
+        <div class="self-stretch border-l border-gray-border-1 mx-5 hidden md:block"></div>
+        <div class="flex items-center self-stretch">
+            <div class="flex items-center py-2 mr-3 md:ml-3">
+                <div style="font-size: 1rem">
+                    <svg-icon class="mx-3 mr-3" src="{{ 'assets/svg/service-client.svg' }}" [svgStyle]="{ 'width.px':20, 'height.px':25, 'fill': 'rgba(12, 36, 189, 1)' }"></svg-icon>
+
+                </div>
+                <span class="text-sm font-bold leading-none">&nbsp;&nbsp;&nbsp;3 Types de Services offers</span>
+            </div>
+            <div class="self-stretch border-l border-gray-border-1 mx-2 md:mx-5"></div>
+            <div class="flex items-center py-2 ml-3">
+                <div style="font-size: 1rem">
+                    <fa-icon class="mr-2" [icon]="['fal', 'gifts']" size="lg" style="color: #0C568B"></fa-icon>
+                </div>
+                <span class="text-sm font-bold leading-none">38 Missions effectuées sur notre Site</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>

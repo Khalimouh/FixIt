@@ -76,13 +76,15 @@ import {
     faThumbsUp
 } from '@fortawesome/free-solid-svg-icons';
 import {SearchComponent} from './search/search.component';
+import { DetailsComponent } from './details/details.component';
+import {AngularSvgIconModule} from "angular-svg-icon";
 
 
 
 
 
 @NgModule({
-    declarations: [AppComponent, AppRoutingComponents, SearchComponent],
+    declarations: [AppComponent, AppRoutingComponents, SearchComponent, DetailsComponent],
     imports: [
         SharedModule,
         BrowserModule,
@@ -93,6 +95,7 @@ import {SearchComponent} from './search/search.component';
         EffectsModule.forRoot([AuthEffects]),
         ToastrModule.forRoot(),
         FontAwesomeModule,
+        AngularSvgIconModule,
     ],
     providers: [AuthGuard, {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true}],
     exports: [],
