@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Annonces = require("../models/annonce")
 const Users = require("../models/user")
-const jwtdecode = require("jwt-decode")
+//const jwtdecode = require("jwt-decode")
 
 
 module.exports = {

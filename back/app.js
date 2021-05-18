@@ -7,7 +7,7 @@ var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var helmet = require('helmet');
 var cors = require("cors");
-var jimp = require("jimp");
+//var jimp = require("jimp");
 const auth = require('./routes/auth');
 
 const RateLimit = require('express-rate-limit');

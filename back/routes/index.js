@@ -8,7 +8,8 @@ const path = require('path');
 const multer = require('multer');
 
 //Gestion des images
-//Enregistrer une image
+
+//paramètre de la fonction de stockage indique l'emplacemnt.
 const storage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null,'public/');
@@ -21,30 +22,35 @@ const storage = multer.diskStorage({
         }
     }
 });
-
+//Enregistrer une image
 const upload = multer({storage:storage,
     fileFilter: function (req, file, callback) {
         let ext = path.extname(file.originalname);
-        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') {
+        if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') { //extention de fichier
             console.log('upload image error')
         }
         callback(null, true)
     }
     ,limits:{fileSize:1024*1024}}); // 10MO size
 
-/*Mise à jour profil sauf mot de passe*/
+/* Mise à jour profil sauf mot de passe*/
 router.put('/user', authController.verifyAccessToken, upload.single('photo'), client.updateUser);
 /* Metre à jour mot de passe*/
 router.put('/user/password',authController.verifyAccessToken, client.verifyOldPassword, client.updatePassword);
 /* GET un utiliateur par id*/
 router.get('/user', authController.verifyAccessToken, client.getUser);
-/* GET home page. */
+/* GET home page.*/
 router.get('/',main.test);
 /* POST envoie les informations de création de compte pour l'inscription*/
 router.post('/signup',authController.emailExists, client.create);
+/* POST confirmation de mail*/
+router.get('/confirmation', client.confirmationPost);
+/* POST envoyer encore une fois une demande confirmation de mail*/
+router.post('/resend', client.resendTokenPost);
 /* POST renvoie les resultats de la recherche par mots clé*/
 router.post('/search', main.search);
-/* POST cree une annonce a partir des données du formulaire */
+/* POST cree une annonce a partir des données du formulaire*/
 router.post('/submit',authController.verifyAccessToken,upload.array('photo',3), main.submit)
+
 
 module.exports = router;

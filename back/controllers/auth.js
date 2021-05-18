@@ -16,6 +16,11 @@ module.exports = {
                     if(bcrypt.compare(req.body.password, user.password)){
                             req.user_id = user._id;
                             next();
+                       /*     if(user.isVerified){
+                                next();
+                            }else{
+                                return res.status(401).send({ type: 'not-verified', msg: 'Your account has not been verified.' });
+                            }*/
                         }else {
                             res.status(401).json({error:"authentication error 2"});
                         }
