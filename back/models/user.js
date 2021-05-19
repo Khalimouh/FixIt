@@ -32,8 +32,6 @@ const Clientschema = new Schema({
 });
 
 //TODO: Déplacer les clé dans le .env et trouver un moyen d'implémenter un key vault local from scratch
-let encKey = process.AESK
-let signKey = process.HMACK
 let encKey = process.env.AESK
 let signKey = process.env.HMACK
 
