@@ -22,5 +22,20 @@ module.exports = {
                 res.status(200);
             }
         });
+    },
+    //chercher une annonce par son Id
+    getAnnonceById: function(req,res){
+        console.log(req.body)
+        //{_id : mongoose.Types.ObjectId(req.body._id)}
+        //{Annonceid : req.body.Annonceid}
+        Annonces.findOne({_id : mongoose.Types.ObjectId(req.body._id)}, function(err, AnnDet){
+            if(err){
+                console.log(err);
+            }
+            else{
+                console.log(AnnDet)
+                res.status(200).json(AnnDet)
+            }
+        });
     }
 }
