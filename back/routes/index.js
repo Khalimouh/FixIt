@@ -5,6 +5,7 @@ const authController = require('../controllers/auth');
 const main = require("../controllers/main");
 const client = require("../controllers/clientController");
 const path = require('path');
+const annoncesController = require("../controllers/annoncesController")
 const multer = require('multer');
 
 //Gestion des images
@@ -51,6 +52,10 @@ router.post('/resend', client.resendTokenPost);
 router.post('/search', main.search);
 /* POST cree une annonce a partir des données du formulaire*/
 router.post('/submit',authController.verifyAccessToken,upload.array('photo',3), main.submit)
+/* POST pour la récupération des annonces par utilisateurs*/
+router.post('/getAnnonces', authController.verifyAccessToken, annoncesController.get)
+/* PUT pour mettre à jour la disponibilité d'une annonce*/
+router.put('/annoncesDispo', authController.verifyAccessToken, annoncesController.updateDispo)
 
 
 module.exports = router;

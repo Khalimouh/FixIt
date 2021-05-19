@@ -67,31 +67,41 @@
             <input class="search-input w-full sm:w-2/4" placeholder="Rechercher"
                    type="search">
             <span
-                  class="text-sm font-bold text-my-blue-1 cursor-pointer mt-2 sm:mt-0">Proposer un service</span>
+                  class="text-sm font-bold text-my-blue-1 cursor-pointer mt-2 sm:mt-0"
+                  (click)= "getUserAnnonces()"
+                  [routerLink]="['//creation/service']" routerLinkActive="router-link-active" >Proposer un service</span>
         </div>
         <!--  //  -->
-        <div  class="info-card flex sm:h-32">
-            <img alt="wallpaper" class="h-full w-32 object-cover p-4" src="assets/images/1.jpg">
-            <div class="flex flex-col flex-grow p-4 sm:px-8 sm:py-6">
-                <span class="flex items-center text-sm">
-                    <span class="text-lg font-bold"
-                          routerLink="/detail/service/">Plombier</span>
-                </span>
+        <div *ngIf="showAnn === true">
+        <ul>
+            <li *ngFor="let ann of annonces">
+                <div>
+                    <div  class="info-card flex sm:h-32">
+                        <img alt="wallpaper" class="h-full w-32 object-cover p-4" src="assets/images/1.jpg">
+                        <div class="flex flex-col flex-grow p-4 sm:px-8 sm:py-6">
+                            <span class="flex items-center text-sm">
+                                <span class="text-lg font-bold"
+                                    routerLink="/detail/service/">{{ann.nom}}</span>
+                            </span>
 
-                <span class="text-sm font-medium leading-none mt-3 mb-3"><fa-icon [fixedWidth]="true" [icon]="['fal', 'calendar-alt']" size="1x"
-                                                                 style="color: #0C568B"></fa-icon> Date de publication : 22/02/2020 </span>
+                            <span class="text-sm font-medium leading-none mt-3 mb-3"><fa-icon [fixedWidth]="true" [icon]="['fal', 'calendar-alt']" size="1x"
+                                                                            style="color: #0C568B"></fa-icon> Date de publication : {{ann.date}} </span>
 
-                <span class="flex items-center mt-8 sm:mt-0  mt-2">
-                    <span class="text-sm font-medium mr-5 sm:mr-2">Disponible</span>
-                    <mat-slide-toggle disableRipple></mat-slide-toggle>
-                </span>
-            </div>
-            <div class="note-badge bg-my-blue-1" routerLink="/detail">
-                <span class="font-bold text-sm leading-none">8.9</span>
-                <span class="font-medium leading-none mt-1" style="font-size: 10px">Excellent</span>
-            </div>
-        </div>
+                            <span class="flex items-center mt-8 sm:mt-0  mt-2">
+                                <span class="text-sm font-medium mr-5 sm:mr-2">Disponible</span>
+                                <mat-slide-toggle disableRipple [(ngModel)]="ann.dispo" (click)="OnDispoClick(ann.dispo, ann.Annonceid)" ></mat-slide-toggle>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
     </div>
+
+    <div *ngIf="showAnn === false">
+        <p class="text-center">Vous n'avez proposé aucun service qu'attendez vous</p>
+    </div>
+
     <!-- Tab1 ======================================================================================================== -->
     <div class="tab-1 col-span-3 sm:col-span-2 pt-4 sm:pt-6 md:pt-10 pl-12 sm:pl-8 md:pl-12 hidden">
 

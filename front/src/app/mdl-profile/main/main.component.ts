@@ -11,6 +11,8 @@ import {DomSanitizer} from '@angular/platform-browser';
 import {ProfileService} from '../services/profile.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserInfo} from '../../store/actions/auth.actions';
+import { HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 
 @Component({
@@ -24,13 +26,21 @@ export class MainComponent implements OnInit, OnDestroy {
   authState: AuthState;
   profilePicSrc = '';
   private smallScreen = false;
+  showAnn = false;
+  annonces = [];
+  headers = new HttpHeaders();
+  
   constructor(private store: Store<AppState>,
               private profileS: ProfileService,
               private dialog: MatDialog,
               private toast: ToastrService,
               private route: ActivatedRoute,
-              public domSanitizer: DomSanitizer) {
+              public domSanitizer: DomSanitizer,
+              private http: HttpClient) {
     this.authState$ = store.select(state => state.auth);
+    this.headers = this.headers.append('content-type', 'application/json');
+    this.headers = this.headers.append('Access-Control-Allow-Origin', '*'); 
+
   }
 
   ngOnInit(): void {
@@ -44,6 +54,8 @@ export class MainComponent implements OnInit, OnDestroy {
         this.profilePicSrc = this.domSanitizer.sanitize(SecurityContext.URL, 'http://127.0.0.1:3000/' + state.user?.photo);
       }
     });
+
+    this.getUserAnnonces();
   }
 
   ngOnDestroy() {
@@ -150,7 +162,33 @@ export class MainComponent implements OnInit, OnDestroy {
     });
   }
 
+  getUserAnnonces(){
+    const url = 'http://localhost:3000/getAnnonces?';
+    this.http.post<any>(url,{auth: this.authState}, {headers: this.headers}).subscribe(
+      (res) => {
+        this.annonces = res;
+        console.log(this.annonces)
+        if(this.annonces.length !== 0) this.showAnn = true;
+        
+      },
+      (err) => {
+        console.error(err);
+      }
+  );
+}
 
+  OnDispoClick(val, id){
+    console.log(id)
+    const url = 'http://localhost:3000/annoncesDispo'
+    this.http.put<any>(url, {value: !val, ida: id}, {headers: this.headers}).subscribe(
+        (res) => {
+          console.log(res)   
+        },
+        (err) => {
+          console.error(err);
+        }
+    );
 
+  }
 
 }
