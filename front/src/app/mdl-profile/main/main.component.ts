@@ -61,6 +61,7 @@ export class MainComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this.destroyed$.next(true);
     this.destroyed$.complete();
+    this.getUserAnnonces();
   }
 
   tab_selected(index) {
