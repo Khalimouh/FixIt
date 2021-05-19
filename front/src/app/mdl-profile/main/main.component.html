@@ -89,7 +89,7 @@
 
                             <span class="flex items-center mt-8 sm:mt-0  mt-2">
                                 <span class="text-sm font-medium mr-5 sm:mr-2">Disponible</span>
-                                <mat-slide-toggle disableRipple></mat-slide-toggle>
+                                <mat-slide-toggle disableRipple [(ngModel)]="ann.dispo" (click)="OnDispoClick(ann.dispo, ann.Annonceid)" ></mat-slide-toggle>
                             </span>
                         </div>
                     </div>

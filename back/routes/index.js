@@ -49,6 +49,7 @@ router.post('/search', main.search);
 router.post('/submit',authController.verifyAccessToken,upload.array('photo',3), main.submit)
 /* POST pour la récupération des annonces par utilisateurs*/
 router.post('/getAnnonces', authController.verifyAccessToken, annoncesController.get)
-
+/* PUT pour mettre à jour la disponibilité d'une annonce*/
+router.put('/annoncesDispo', authController.verifyAccessToken, annoncesController.updateDispo)
 
 module.exports = router;

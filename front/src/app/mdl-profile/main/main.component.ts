@@ -28,6 +28,8 @@ export class MainComponent implements OnInit, OnDestroy {
   private smallScreen = false;
   showAnn = false;
   annonces = [];
+  headers = new HttpHeaders();
+  
   constructor(private store: Store<AppState>,
               private profileS: ProfileService,
               private dialog: MatDialog,
@@ -36,6 +38,9 @@ export class MainComponent implements OnInit, OnDestroy {
               public domSanitizer: DomSanitizer,
               private http: HttpClient) {
     this.authState$ = store.select(state => state.auth);
+    this.headers = this.headers.append('content-type', 'application/json');
+    this.headers = this.headers.append('Access-Control-Allow-Origin', '*'); 
+
   }
 
   ngOnInit(): void {
@@ -159,20 +164,31 @@ export class MainComponent implements OnInit, OnDestroy {
 
   getUserAnnonces(){
     const url = 'http://localhost:3000/getAnnonces?';
-    let headers = new HttpHeaders();
-    
-    headers = headers.append('content-type', 'application/json');
-    headers = headers.append('Access-Control-Allow-Origin', '*'); 
-    this.http.post<any>(url,{auth: this.authState}, {headers: headers}).subscribe(
+    this.http.post<any>(url,{auth: this.authState}, {headers: this.headers}).subscribe(
       (res) => {
-       ;
         this.annonces = res;
         console.log(this.annonces)
         if(this.annonces.length !== 0) this.showAnn = true;
+        
       },
       (err) => {
         console.error(err);
       }
   );
 }
+
+  OnDispoClick(val, id){
+    console.log(id)
+    const url = 'http://localhost:3000/annoncesDispo'
+    this.http.put<any>(url, {value: !val, ida: id}, {headers: this.headers}).subscribe(
+        (res) => {
+          console.log(res)   
+        },
+        (err) => {
+          console.error(err);
+        }
+    );
+
   }
+
+}
