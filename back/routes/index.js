@@ -56,6 +56,7 @@ router.post('/submit',authController.verifyAccessToken,upload.array('photo',3), 
 router.post('/getAnnonces', authController.verifyAccessToken, annoncesController.get)
 /* PUT pour mettre à jour la disponibilité d'une annonce*/
 router.put('/annoncesDispo', authController.verifyAccessToken, annoncesController.updateDispo)
-
+/* POST  les details d'une annonce */
+router.post('/detail', annoncesController.getAnnonceById);
 
 module.exports = router;

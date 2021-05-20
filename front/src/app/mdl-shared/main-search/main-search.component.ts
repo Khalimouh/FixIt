@@ -40,6 +40,7 @@ export class MainSearchComponent implements OnInit {
     // @ts-ignore
     this.http.post<any>(url, body, {headers: headers}).subscribe(
         (res) => {
+          console.log(res);
           this.sharedS.storeData(res);
         },
         (err) => {
