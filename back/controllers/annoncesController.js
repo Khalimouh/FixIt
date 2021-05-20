@@ -1,4 +1,5 @@
 const Annonces = require("../models/annonce");
+const User = require("../models/user");
 const mongoose = require("mongoose")
 
 module.exports = {
@@ -26,15 +27,22 @@ module.exports = {
     //chercher une annonce par son Id
     getAnnonceById: function(req,res){
         console.log(req.body)
-        //{_id : mongoose.Types.ObjectId(req.body._id)}
-        //{Annonceid : req.body.Annonceid}
-        Annonces.findOne({_id : mongoose.Types.ObjectId(req.body._id)}, function(err, AnnDet){
+        Annonces.findOne({Annonceid : req.body._id}, function(err, AnnDet){
             if(err){
                 console.log(err);
             }
             else{
                 console.log(AnnDet)
-                res.status(200).json(AnnDet)
+                User.find({_id: AnnDet.user}, function(err, fullres){
+                    if(err){
+                        console.log(err);
+                    }else{
+                        console.log(fullres)
+                        res.status(200).json({ainfo: AnnDet, uinfo: fullres})
+                    }
+                })
+
+
             }
         });
     }

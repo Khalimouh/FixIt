@@ -1,16 +1,16 @@
-import {Component, OnDestroy, OnInit, SecurityContext, ViewEncapsulation} from '@angular/core';
-import {Store} from '@ngrx/store';
-import {AppState} from '../../store/app.states';
-import {Observable, Subject} from 'rxjs';
-import {AuthState} from '../../store/reducers/auth.reducers';
-import {MatDialog} from '@angular/material/dialog';
-import {takeUntil} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit, SecurityContext, ViewEncapsulation } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/app.states';
+import { Observable, Subject } from 'rxjs';
+import { AuthState } from '../../store/reducers/auth.reducers';
+import { MatDialog } from '@angular/material/dialog';
+import { takeUntil } from 'rxjs/operators';
 import * as dialogsComponents from './dialogs/dialogs.components';
-import {ToastrService} from 'ngx-toastr';
-import {DomSanitizer} from '@angular/platform-browser';
-import {ProfileService} from '../services/profile.service';
-import {ActivatedRoute, Router} from '@angular/router';
-import {UserInfo} from '../../store/actions/auth.actions';
+import { ToastrService } from 'ngx-toastr';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ProfileService } from '../services/profile.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { UserInfo } from '../../store/actions/auth.actions';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
 
@@ -19,7 +19,8 @@ import { HttpClient } from '@angular/common/http';
   selector: 'app-main',
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.css'],
-  encapsulation: ViewEncapsulation.None })
+  encapsulation: ViewEncapsulation.None
+})
 export class MainComponent implements OnInit, OnDestroy {
   destroyed$ = new Subject<boolean>();
   authState$: Observable<AuthState>;
@@ -31,12 +32,12 @@ export class MainComponent implements OnInit, OnDestroy {
   headers = new HttpHeaders();
 
   constructor(private store: Store<AppState>,
-              private profileS: ProfileService,
-              private dialog: MatDialog,
-              private toast: ToastrService,
-              private route: ActivatedRoute,
-              public domSanitizer: DomSanitizer,
-              private http: HttpClient) {
+    private profileS: ProfileService,
+    private dialog: MatDialog,
+    private toast: ToastrService,
+    private route: ActivatedRoute,
+    public domSanitizer: DomSanitizer,
+    private http: HttpClient) {
     this.authState$ = store.select(state => state.auth);
     this.headers = this.headers.append('content-type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
@@ -138,34 +139,34 @@ export class MainComponent implements OnInit, OnDestroy {
   openProfileInfoDialog() {
     this.dialog.open(dialogsComponents.ProfileInfoDialogComponent, {
       width: '350px',
-      data: {state$: this.authState$, toast: this.toast}
+      data: { state$: this.authState$, toast: this.toast }
     });
   }
 
   openEditPhoneDialog() {
     this.dialog.open(dialogsComponents.EditPhoneDialogComponent, {
       width: '350px',
-      data: {state$: this.authState$, toast: this.toast}
+      data: { state$: this.authState$, toast: this.toast }
     });
   }
 
   openEditEmailDialog() {
     this.dialog.open(dialogsComponents.EditEmailDialogComponent, {
       width: '350px',
-      data: {state$: this.authState$, toast: this.toast}
+      data: { state$: this.authState$, toast: this.toast }
     });
   }
 
   openEditPasswordDialog() {
     this.dialog.open(dialogsComponents.EditPasswordDialogComponent, {
       width: '350px',
-      data: {state$: this.authState$, toast: this.toast}
+      data: { state$: this.authState$, toast: this.toast }
     });
   }
 
-  getUserAnnonces(){
+  getUserAnnonces() {
     const url = 'http://localhost:3000/getAnnonces?';
-    this.http.post<any>(url, {auth: this.authState}, {headers: this.headers}).subscribe(
+    this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
       (res) => {
         this.annonces = res;
         console.log(this.annonces);
@@ -175,19 +176,19 @@ export class MainComponent implements OnInit, OnDestroy {
       (err) => {
         console.error(err);
       }
-  );
-}
+    );
+  }
 
-  OnDispoClick(val, id){
+  OnDispoClick(val, id) {
     console.log(id);
     const url = 'http://localhost:3000/annoncesDispo';
-    this.http.put<any>(url, {value: !val, ida: id}, {headers: this.headers}).subscribe(
-        (res) => {
-          console.log(res);
-        },
-        (err) => {
-          console.error(err);
-        }
+    this.http.put<any>(url, { value: !val, ida: id }, { headers: this.headers }).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.error(err);
+      }
     );
 
   }
