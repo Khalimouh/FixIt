@@ -24,7 +24,7 @@ module.exports = {
                    // Send the email
                    sgMail.setApiKey(process.env.SENDGRID_API_KEY)
                    const mailOptions = {
-                       to: client.email,
+                       to: client.login,
                        from: 'haffarm1@hotmail.com',
                        subject: 'Account Verification Token',
                        text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '/confirmation?token=' + token.token + '\n',
