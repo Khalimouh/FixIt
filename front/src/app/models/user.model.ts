@@ -4,4 +4,5 @@ export interface User {
   login: string;
   tel: string | null;
   photo: string | null;
+  isVerified: boolean | null;
 }

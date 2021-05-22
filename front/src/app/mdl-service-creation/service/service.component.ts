@@ -64,7 +64,6 @@ export class ServiceComponent implements OnInit, OnDestroy {
   loadOptions() {
     // User infos
     this.authState$.pipe(takeUntil(this.destroyed$)).subscribe(state => this.authState = state);
-
   }
 
   /** Elements management ==========================================================================================> */

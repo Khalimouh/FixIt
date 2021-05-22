@@ -1,4 +1,6 @@
-<div class="text-my-gray-3" id="wrapper">
+
+
+<div  class="text-my-gray-3" id="wrapper">
     <!-- Header ====================================================================================================== -->
     <header class="h-16 2xl:h-24 w-full px-6 md:px-12 lg:px-24 2xl:px-32 flex justify-between items-center">
         <img width="90px" src="assets/images/logo.svg" class="cursor-pointer" [routerLink]="['/']">
@@ -19,15 +21,18 @@
             <img alt="avatar" class="h-full w-full" src="assets/images/avatar.png">
         </div>
         <div class="h-full ml-4 flex flex-col justify-center">
-            <span class="text-white text-2xl font-bold ">{{ authState.user?.nom + ' ' + authState.user?.prenom }}</span>
+            <span class="text-white text-2xl font-bold ">{{ authState.user?.nom + ' ' + authState.user.prenom   }}</span>
+
         </div>
     </div>
 
 
-
+    <div *ngIf="!authState.user.isVerified" class="relative w-full text-xl text-center pt-16">
+        Vous devez confimer votre adresse mail, aprés rechargez cette page
+    </div>
     <!-- Tab1 ======================================================================================================== -->
-    <div
-            class="grid grid-cols-4 gap-2 row-gap-3 w-full lg:w-3/4 2xl:w-3/5 mt-12 2xl:mt-14 px-6 md:px-12 lg:px-24 2xl:px-32 mb-10 mt-3"
+    <div *ngIf="authState.user.isVerified"
+         class="grid grid-cols-4 gap-2 row-gap-3 w-full lg:w-3/4 2xl:w-3/5 mt-12 2xl:mt-14 px-6 md:px-12 lg:px-24 2xl:px-32 mb-10 mt-3"
             id="tab1">
         <!-- Bienvenue ==== -->
         <div class="col-span-4 flex items-center mb-3">

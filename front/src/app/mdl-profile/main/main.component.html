@@ -7,7 +7,11 @@
 </div>
 <!-- Main search end =============================================================================================== -->
 
-<div class="relative w-full grid grid-cols-3 xl:w-3/4 2xl:w-3/5 px-4 md:px-12 lg:px-24 xl:px-0 mx-auto text-my-gray-3">
+<div routerLink="/profile" *ngIf="!authState.user.isVerified" class="relative w-full text-xl text-center pt-16">
+    Vous devez confimer votre adresse mail, aprés rechargez cette page
+</div>
+
+<div *ngIf="authState.user.isVerified" class="relative w-full grid grid-cols-3 xl:w-3/4 2xl:w-3/5 px-4 md:px-12 lg:px-24 xl:px-0 mx-auto text-my-gray-3">
     <!-- Tabs MENU =================================================================================================== -->
     <div #tab_menu
         class="tabs-menu sm:col-span-1 flex flex-col sm:border-l border-r border-my-gray-2 min-h-screen bg-white">
@@ -126,10 +130,11 @@
                     <img [src]="profilePicSrc" class="rounded-full mr-5" style="width: 56px">
                     <div class="flex flex-col text-my-gray-4">
                         <span class="font-bold text-xs leading-none">Name</span>
-                        <span class="text-sm leading-none mt-2">{{ authState.user?.nom + ' ' + authState.user?.prenom
-                            }}</span>
+                        <span class="text-sm leading-none mt-2">{{ authState.user?.nom + ' ' }}</span>
                     </div>
                 </div>
+
+
                 <span (click)="openProfileInfoDialog()"
                     class="font-bold text-xs leading-none cursor-pointer">Modifier</span>
             </div>

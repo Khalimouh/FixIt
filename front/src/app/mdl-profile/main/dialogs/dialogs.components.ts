@@ -198,6 +198,25 @@ export class EditPasswordDialogComponent implements OnDestroy {
   }
 }
 
+@Component({
+  // tslint:disable-next-line:component-selector
+  selector: 'app-dialog-notConfirm',
+  templateUrl: 'templates/NotConfirmed.html' })
+// tslint:disable-next-line:component-class-suffix
+export class NotConfirmed implements OnDestroy {
+  constructor(public dialogRef: MatDialogRef<EditPasswordDialogComponent>) {
+
+  }
+
+
+  closeDialog() {
+    this.dialogRef.close();
+  }
+
+  ngOnDestroy(): void {
+  }
+}
+
 
 
 
@@ -207,5 +226,6 @@ export const AllDialogsComponents = [
   ProfileInfoDialogComponent,
   EditPasswordDialogComponent,
   EditPhoneDialogComponent,
-  EditEmailDialogComponent
+  EditEmailDialogComponent,
+    NotConfirmed
 ];

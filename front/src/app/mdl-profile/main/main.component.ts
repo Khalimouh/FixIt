@@ -53,8 +53,9 @@ export class MainComponent implements OnInit, OnDestroy {
       if (state.user) {
         this.profilePicSrc = this.domSanitizer.sanitize(SecurityContext.URL, 'http://127.0.0.1:3000/' + state.user?.photo);
       }
-    });
 
+    });
+    // if (!this.authState.user.isVerified) { this.openNotConfirmDialog(); }
     this.getUserAnnonces();
   }
 
@@ -159,6 +160,13 @@ export class MainComponent implements OnInit, OnDestroy {
   openEditPasswordDialog() {
     this.dialog.open(dialogsComponents.EditPasswordDialogComponent, {
       width: '350px',
+      data: { state$: this.authState$, toast: this.toast }
+    });
+  }
+
+  openNotConfirmDialog() {
+    this.dialog.open(dialogsComponents.NotConfirmed, {
+      width: '400px',
       data: { state$: this.authState$, toast: this.toast }
     });
   }

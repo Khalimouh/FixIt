@@ -127,6 +127,7 @@ module.exports = {
                 console.log(err);
                 res.status(400).json({error:"user not found"});
             }else{
+                console.log(user);
                 res.status(200).json(user);
             }
         })
