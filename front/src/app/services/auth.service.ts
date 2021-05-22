@@ -4,6 +4,7 @@ import {tap} from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import {EMPTY} from 'rxjs';
 
+
 export const ACC_TOKEN_NAME = 'tg-access-token';
 export const REF_TOKEN_NAME = 'tg-refresh-token';
 
@@ -79,6 +80,10 @@ export class AuthService {
 
   editUserPassword(info) {
     return this.http.put<any>(`${this.BASE_URL}/user/password`, info);
+  }
+
+  submitServiceInfo(info) {
+    return this.http.post<any>(`${this.BASE_URL}/submit`, info);
   }
 
   constructor(private http: HttpClient) { }

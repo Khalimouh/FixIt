@@ -26,6 +26,7 @@ const storage = multer.diskStorage({
 //Enregistrer une image
 const upload = multer({storage:storage,
     fileFilter: function (req, file, callback) {
+        console.log(req.body)
         let ext = path.extname(file.originalname);
         if(ext !== '.png' && ext !== '.jpg' && ext !== '.jpeg') { //extention de fichier
             console.log('upload image error')
@@ -51,7 +52,7 @@ router.post('/resend', client.resendTokenPost);
 /* POST renvoie les resultats de la recherche par mots clé*/
 router.post('/search', main.search);
 /* POST cree une annonce a partir des données du formulaire*/
-router.post('/submit',authController.verifyAccessToken,upload.array('photo',3), main.submit)
+router.post('/submit',authController.verifyAccessToken,upload.single('photo'), main.submit)
 /* POST pour la récupération des annonces par utilisateurs*/
 router.post('/getAnnonces', authController.verifyAccessToken, annoncesController.get)
 /* PUT pour mettre à jour la disponibilité d'une annonce*/

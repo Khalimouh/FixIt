@@ -5,7 +5,7 @@ import {Observable, Subject} from 'rxjs';
 import {Store} from '@ngrx/store';
 import {AuthState} from '../../store/reducers/auth.reducers';
 import {AppState} from '../../store/app.states';
-import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-hotel-creation',
@@ -13,10 +13,10 @@ import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
   styleUrls: ['./service.component.css']
 })
 export class ServiceComponent implements OnInit, OnDestroy {
-  nom : string;
-  tarifmin : any;
-  tarifmax : any;
-  description : string;
+  nom: string;
+  tarifmin: any;
+  tarifmax: any;
+  description: string;
   tag: string;
   photo: any[];
 
@@ -130,10 +130,19 @@ export class ServiceComponent implements OnInit, OnDestroy {
 
   /** POST form ===============================================================> */
   SubmitService(){
-    console.log("clicked");
+    console.log('clicked');
     console.log(this.authState.user);
-    console.log(this.tag,this.description,this.nom,this.tarifmax,this.tarifmin);
-    let body = {
+    console.log(this.tag, this.description, this.nom, this.tarifmax, this.tarifmin);
+
+    const fd = new FormData();
+    fd.append('nom', this.nom);
+    fd.append('tag', this.tag);
+    fd.append('tarifmin', this.tarifmin);
+    fd.append('tarifmax', this.tarifmax);
+    fd.append('description', this.description);
+    fd.append('user', this.authState.user.nom);
+    fd.append('photo', this.images[0]);
+    const body = {
       photo : this.photo,
       nom : this.nom,
       tag: this.tag,
@@ -141,13 +150,11 @@ export class ServiceComponent implements OnInit, OnDestroy {
       tarifmax: this.tarifmax,
       description: this.description,
       user: this.authState.user.nom
-
     };
     const url = 'http://localhost:3000/submit';
     let head = new HttpHeaders();
-    head = head.append('content-type', 'application/json');
-    head= head.append('Access-Control-Allow-Origin', '*');
-    this.http.post(url, body,{headers:head}).subscribe(
+    head = head.append('Access-Control-Allow-Origin', '*');
+    this.http.post(url, fd, {headers: head}).subscribe(
         (res) => {
           console.log(res);
         },

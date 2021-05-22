@@ -87,7 +87,6 @@ module.exports = {
     },
 
     verifyAccessToken: function (req, res, next) {
-        console.log(req.headers['authorization']);
 
         let token = req.headers['x-access-token'] || req.headers['authorization'];
         if(!token){

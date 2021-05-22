@@ -26,18 +26,17 @@ export class MainComponent implements OnInit, OnDestroy {
   authState$: Observable<AuthState>;
   authState: AuthState;
   profilePicSrc = '';
-  private smallScreen = false;
   showAnn = false;
   annonces = [];
   headers = new HttpHeaders();
 
   constructor(private store: Store<AppState>,
-    private profileS: ProfileService,
-    private dialog: MatDialog,
-    private toast: ToastrService,
-    private route: ActivatedRoute,
-    public domSanitizer: DomSanitizer,
-    private http: HttpClient) {
+              private profileS: ProfileService,
+              private dialog: MatDialog,
+              private toast: ToastrService,
+              private route: ActivatedRoute,
+              public domSanitizer: DomSanitizer,
+              private http: HttpClient) {
     this.authState$ = store.select(state => state.auth);
     this.headers = this.headers.append('content-type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
@@ -46,7 +45,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
 
-    document.getElementsByClassName('tab-label')[0].classList.add('active-tab-label');
+    // document.getElementsByClassName('tab-label')[0].classList.add('active-tab-label');
     this.store.dispatch(new UserInfo());
     this.authState$.pipe(takeUntil(this.destroyed$)).subscribe(state => {
       console.log(state);
@@ -126,7 +125,7 @@ export class MainComponent implements OnInit, OnDestroy {
     }
     document.getElementsByClassName('tab-indicator')[5].classList.remove('active-tab-label');
     prevTabInd.parentElement.classList.remove('active-tab-label');
-    nextTabInd.parentElement.classList.add('active-tab-label');
+    // nextTabInd.parentElement.classList.add('active-tab-label');
     setTimeout(() => {
       for (let i = min + 1; i < max; i++) {
         (document.getElementsByClassName('tab-indicator')[i] as HTMLElement).style.removeProperty('height');

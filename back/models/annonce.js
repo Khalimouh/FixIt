@@ -10,9 +10,10 @@ const Annonceschema = new Schema({
     artisantid: Number,
     avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: String}],
     tag: String,
-    photo: Buffer,
+    photo: String,
     code: Number,
     date: String,
+    dateAdd: Date,
     dispo: Boolean,
     user: mongoose.Schema.ObjectId
 });

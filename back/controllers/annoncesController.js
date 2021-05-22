@@ -5,7 +5,7 @@ const mongoose = require("mongoose")
 module.exports = {
     get: function(req,res){
         console.log(req.body)
-        Annonces.find({user: req.user_id}, function(err, ann){
+        Annonces.find({user: req.user_id},null,{sort:{dateAdd: -1 }}, function(err, ann){
             if(err){
                 console.log('Error get annonces');
             }

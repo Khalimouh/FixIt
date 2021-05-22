@@ -8,7 +8,7 @@ module.exports = {
     test: function (req, res, next) {
         res.status(200).json({API :"works"});
     },
-    
+
     //Recherche par mot clé des annonces
     search: function(req,res, next) {
         let resultat = [];
@@ -33,7 +33,12 @@ module.exports = {
     },
     //Dépot d'annonces
     submit: function(req,res){
-        //console.log(req.headers);
+
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+        console.log(req.body)
+        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+
+        // //console.log(req.headers);
         Annonces.countDocuments({}, async function(err,nb){
             if(err) console.error(err, "Erreur dans le comptage des documents de la collection artisant")
             else{
@@ -43,16 +48,17 @@ module.exports = {
                 obj.photo = req.body.photo;
                 today = new Date();
                 var dd = today.getDate();
-                var mm = today.getMonth()+1; 
+                var mm = today.getMonth()+1;
                 var yyyy = today.getFullYear();
                 obj.date = dd+'/'+mm+'/'+yyyy;
+                obj.dateAdd = Date.now();
                 obj.avis = [{idclient: 0, noteservice: 0, notetemps: 0, NoteCom: 0,desc:0, date: obj.date}];
                 obj.dispo = true;
                 console.log(obj)
                 Annonces.create(obj, function(err, ann){
                     if(err) console.error(err, "Erreur dans la création de l'annonce")
                     else{
-                        res.status(200)
+                        res.status(200).json(ann)
                     }
                 })
             }});
