@@ -103,8 +103,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
         };
     }
 
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
+
 }
 
 // Dialog3 ==========================================================================

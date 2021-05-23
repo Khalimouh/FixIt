@@ -40,17 +40,15 @@
             <div class="blue_line"></div>
         </div>
         <div class="input-wrapper col-span-1">
-            <div style="font-size: 1.2rem">
-                <fa-icon class="mx-2" [icon]="['fal', 'hotel']" size="1x" style="color: #5B636D"></fa-icon>
-            </div>
+            <svg-icon class="mx-3" src="{{ 'assets/svg/service_intitule.svg' }}"
+                      [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
             <input (focus)="input_focused($event.target)"  class="my-input"
                    placeholder="Intitulé du service"
                    type="text" [(ngModel)]="nom" ><!--// INPUT //-->
         </div>
         <div class="input-wrapper col-span-1">
-            <div style="font-size: 1.2rem">
-                <fa-icon class="mx-2" [icon]="['fal', 'map-marked-alt']" size="1x" style="color: #5B636D"></fa-icon>
-            </div>
+            <svg-icon class="mx-3" src="{{ 'assets/svg/service-client.svg' }}"
+                      [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
             <mat-select (focus)="input_focused($event.target)" (openedChange)="mat_toggled($event)"
                         disableOptionCentering panelClass="my-mat-select" placeholder="Service Tag"
                         [(value)]="tag">

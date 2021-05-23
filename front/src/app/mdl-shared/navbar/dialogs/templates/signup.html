@@ -46,7 +46,7 @@
                 <span *ngIf="submitted && registerForm['controls'].ntel.errors"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ce champ est requis</span>
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
-                    <svg-icon class="mx-3" src="{{ 'assets/svg/mail.svg' }}"
+                    <svg-icon class="mx-3" src="{{ 'assets/svg/phone.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
                     <label class="flex items-stretch h-full w-full">
                         <input class="my-input pr-3" formControlName="ntel"
@@ -54,8 +54,6 @@
                                type="number" name="NTel"  >
                     </label>
                 </div>
-
-
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/lock.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
@@ -64,10 +62,8 @@
                                type="password" autocomplete="current-passwor">
                     </label>
                 </div>
-                <span *ngIf="submitted && f.password.errors.minlength"
+                <span *ngIf="submitted && registerForm['controls'].password.errors.minlength"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">mot de passe doit étre au min de 8 charactéres</span>
-
-
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/lock.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
@@ -76,7 +72,7 @@
                                type="password" autocomplete="confirm-passwor">
                     </label>
                 </div>
-                <span *ngIf="submitted && f.confirmPassword.errors.mustMatch"
+                <span *ngIf="submitted && registerForm['controls'].confirmPassword.errors.mustMatch"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ces mots de passe ne correspondent pas. Veuillez réessayer.</span>
 
 
