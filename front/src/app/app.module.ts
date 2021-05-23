@@ -77,14 +77,15 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import {SearchComponent} from './search/search.component';
 import { DetailsComponent } from './details/details.component';
-import {AngularSvgIconModule} from "angular-svg-icon";
+import {AngularSvgIconModule} from 'angular-svg-icon';
+import {FooterComponent} from './mdl-shared/footer/footer.component';
 
 
 
 
 
 @NgModule({
-    declarations: [AppComponent, AppRoutingComponents, SearchComponent, DetailsComponent],
+    declarations: [AppComponent, AppRoutingComponents, SearchComponent, DetailsComponent, FooterComponent],
     imports: [
         SharedModule,
         BrowserModule,

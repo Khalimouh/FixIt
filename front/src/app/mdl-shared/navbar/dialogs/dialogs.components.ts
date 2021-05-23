@@ -50,9 +50,7 @@ export class SignUpComponent implements OnInit, OnDestroy {
             password: ['', [Validators.required, Validators.minLength(8)]],
             confirmPassword: ['', Validators.required],
             ntel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]},
-            {
-                validator: this.MustMatch('password', 'confirmPassword')
-    });
+            { validator: this.MustMatch('password', 'confirmPassword') });
     }
 
 
