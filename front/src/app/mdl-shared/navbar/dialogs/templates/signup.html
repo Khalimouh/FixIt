@@ -54,6 +54,8 @@
                                type="number" name="NTel"  >
                     </label>
                 </div>
+
+
                 <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
                     <svg-icon class="mx-3" src="{{ 'assets/svg/lock.svg' }}"
                               [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
@@ -62,8 +64,22 @@
                                type="password" autocomplete="current-passwor">
                     </label>
                 </div>
-                <span *ngIf="submitted && registerForm['controls'].password.errors"
+                <span *ngIf="submitted && f.password.errors.minlength"
                       class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">mot de passe doit étre au min de 8 charactéres</span>
+
+
+                <div class="w-full h-10 md:h-12 flex items-center border border-my-gray-3 mt-3">
+                    <svg-icon class="mx-3" src="{{ 'assets/svg/lock.svg' }}"
+                              [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
+                    <label class="flex items-stretch h-full w-full">
+                        <input class="my-input pr-3" formControlName="confirmPassword" placeholder="Confirmation mot de passe"
+                               type="password" autocomplete="confirm-passwor">
+                    </label>
+                </div>
+                <span *ngIf="submitted && f.confirmPassword.errors.mustMatch"
+                      class="mt-2 w-full py-1 px-3 bg-red-200 text-red-700 text-xs font-medium rounded-sm">Ces mots de passe ne correspondent pas. Veuillez réessayer.</span>
+
+
                 <div class="w-full mt-3 flex items-start overflow-hidden">
                     <mat-checkbox disableRipple formControlName="conditions" required></mat-checkbox>
                     <span class="ml-3 text-sm">Je certifie avoir pris connaissance des <span

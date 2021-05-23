@@ -9,7 +9,6 @@ import {Actions, ofType} from '@ngrx/effects';
 import {takeUntil, tap} from 'rxjs/operators';
 
 
-
 // Dialog2 ==========================================================================
 @Component({
     selector: 'app-signup-select',
@@ -49,9 +48,14 @@ export class SignUpComponent implements OnInit, OnDestroy {
             prenom: ['', Validators.required],
             email: ['', [Validators.required, Validators.email]],
             password: ['', [Validators.required, Validators.minLength(8)]],
-            ntel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]
-        });
+            confirmPassword: ['', Validators.required],
+            ntel: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(10)]]},
+            {
+                validator: this.MustMatch('password', 'confirmPassword')
+    });
     }
+
+
 
     ngOnDestroy() {
         this.destroyed$.next(true);
@@ -78,6 +82,29 @@ export class SignUpComponent implements OnInit, OnDestroy {
         //     })
         // ).subscribe();
     }
+
+    // custom validator to check that two fields match
+    MustMatch(controlName: string, matchingControlName: string) {
+        return (formGroup: FormGroup) => {
+            const control = formGroup.controls[controlName];
+            const matchingControl = formGroup.controls[matchingControlName];
+
+         /*   if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+                // return if another validator has already found an error on the matchingControl
+                return;
+            } */
+
+            // set error on matchingControl if validation fails
+            if (control.value !== matchingControl.value) {
+                matchingControl.setErrors({ mustMatch: true });
+            } else {
+                matchingControl.setErrors(null);
+            }
+        };
+    }
+
+    // convenience getter for easy access to form fields
+    get f() { return this.registerForm.controls; }
 }
 
 // Dialog3 ==========================================================================
