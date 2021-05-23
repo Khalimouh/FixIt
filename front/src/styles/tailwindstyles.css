@@ -391,6 +391,10 @@ img {
   justify-content: space-between;
 }
 
+.justify-around {
+  justify-content: space-around;
+}
+
 .flex-grow {
   flex-grow: 1;
 }
@@ -720,6 +724,10 @@ img {
   padding-top: 0.5rem;
 }
 
+.pb-2 {
+  padding-bottom: 0.5rem;
+}
+
 .pr-3 {
   padding-right: 0.75rem;
 }
@@ -887,6 +895,12 @@ img {
   gap: 1rem;
 }
 
+.col-gap-1 {
+  grid-column-gap: 0.25rem;
+  -moz-column-gap: 0.25rem;
+       column-gap: 0.25rem;
+}
+
 .row-gap-2 {
   grid-row-gap: 0.5rem;
   row-gap: 0.5rem;
@@ -923,6 +937,10 @@ img {
 
 .col-span-1 {
   grid-column: span 1 / span 1;
+}
+
+.col-span-2 {
+  grid-column: span 2 / span 2;
 }
 
 .col-span-3 {

@@ -9,22 +9,23 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  headers = new HttpHeaders();
-  annonce: any;
-  constructor(private location:Location, private http: HttpClient) { 
+  constructor(private location: Location, private http: HttpClient) {
     this.headers = this.headers.append('Content-Type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
 
-    
-  }
 
-  ngOnInit(): void {    
+  }
+  headers = new HttpHeaders();
+  annonce: any;
+s;
+
+  ngOnInit(): void {
     this.fetchServiceDetails(this.location.getState());
   }
 
   fetchServiceDetails(id){
       console.log(id);
-      const url = 'http://localhost:3000/detail'
+      const url = 'http://localhost:3000/detail';
       this.http.post<any>(url, {_id : id.id}, { headers: this.headers }).subscribe(
         (res) => {
           console.log(res);
@@ -35,5 +36,4 @@ export class DetailsComponent implements OnInit {
         }
       );
   }
-s
 }
