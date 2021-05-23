@@ -37,6 +37,11 @@ export class SignUpComponent implements OnInit, OnDestroy {
         this.closeDialog();
     }
 
+    onReset() {
+        this.submitted = false;
+        this.registerForm.reset();
+    }
+
     closeDialog() {
         this.dialogRef.close();
     }
@@ -89,10 +94,10 @@ export class SignUpComponent implements OnInit, OnDestroy {
             const control = formGroup.controls[controlName];
             const matchingControl = formGroup.controls[matchingControlName];
 
-         /*   if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+             if (matchingControl.errors && !matchingControl.errors.mustMatch) {
                 // return if another validator has already found an error on the matchingControl
                 return;
-            } */
+            }
 
             // set error on matchingControl if validation fails
             if (control.value !== matchingControl.value) {
