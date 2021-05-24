@@ -19,7 +19,7 @@ export class MainSearchComponent implements OnInit {
 
   ngOnInit(): void {
     this.mission = '';
-    this.prix = 0;
+    this.prix = null;
     this.code = '';
   }
 

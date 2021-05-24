@@ -61,20 +61,12 @@
                      [icon]="['fal', 'chevron-down']" size="1x" style="color: #5B636D"></fa-icon>
         </div>
         <div class="input-wrapper col-span-1">
-            <div style="font-size: 1.2rem">
-                <fa-icon class="mx-2" [icon]="['fal', 'phone-rotary']" size="1x" style="color: #5B636D"></fa-icon>
+            <div class="clo-span-1 flex items-center justify-center cursor-pointer" >
+                <svg-icon class="mx-3" src="{{ 'assets/svg/budget.svg' }}" [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.8)' }"></svg-icon>
             </div>
             <input (focus)="input_focused($event.target)" class="my-input"
                    placeholder="Prix minimum / Jour"
                    type="number" [(ngModel)]="tarifmin"><!--// INPUT //-->
-        </div>
-        <div class="input-wrapper col-span-1">
-            <div style="font-size: 1.2rem">
-                <fa-icon class="mx-2" [icon]="['fal', 'phone-rotary']" size="1x" style="color: #5B636D"></fa-icon>
-            </div>
-            <input (focus)="input_focused($event.target)" class="my-input"
-                   placeholder="Prix maximum / Jour"
-                   type="number" [(ngModel)]="tarifmax"><!--// INPUT //-->
         </div>
 
 

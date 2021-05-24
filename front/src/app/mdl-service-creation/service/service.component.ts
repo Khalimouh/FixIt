@@ -15,8 +15,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ServiceComponent implements OnInit, OnDestroy {
   nom: string;
-  tarifmin: any;
-  tarifmax: any;
+  tarifmin: number;
   description: string;
   tag: string;
   photo: any[];
@@ -55,8 +54,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
   /** On_init ======================================================================================================> */
   ngOnInit(): void {
     this.nom = '';
-    this.tarifmin = 0;
-    this.tarifmax = 0;
+    this.tarifmin = null;
     this.description = '';
     this.tag = '';
     this.photo = null;

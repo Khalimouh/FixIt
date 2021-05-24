@@ -818,6 +818,12 @@ img {
   color: rgba(72, 187, 120, var(--text-opacity));
 }
 
+.text-blue-500 {
+  --text-opacity: 1;
+  color: #4299e1;
+  color: rgba(66, 153, 225, var(--text-opacity));
+}
+
 .text-my-gray-3 {
   --text-opacity: 1;
   color: #5B636D;
@@ -840,6 +846,10 @@ img {
   --text-opacity: 1;
   color: #13568B;
   color: rgba(19, 86, 139, var(--text-opacity));
+}
+
+.underline {
+  text-decoration: underline;
 }
 
 .w-1 {
@@ -961,10 +971,6 @@ img {
 
 .grid-rows-2 {
   grid-template-rows: repeat(2, minmax(0, 1fr));
-}
-
-.row-span-1 {
-  grid-row: span 1 / span 1;
 }
 
 .row-span-2 {

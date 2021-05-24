@@ -6,7 +6,6 @@ const Annonceschema = new Schema({
     nom: String,
     description: String,
     tarifmin: Number,
-    tarifmax: Number,
     artisantid: Number,
     avis: [{idclient: Number, noteservice: Number, notetemps: Number, NoteCom: Number,desc:String, date: String}],
     tag: String,
