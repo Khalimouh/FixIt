@@ -146,13 +146,13 @@ export class ServiceComponent implements OnInit, OnDestroy {
   SubmitService(){
     console.log('clicked');
     console.log(this.authState.user);
-    console.log(this.tag, this.description, this.nom, this.tarifmax, this.tarifmin);
+    console.log(this.tag, this.description, this.nom, this.tarifmin);
 
     const fd = new FormData();
     fd.append('nom', this.nom);
     fd.append('tag', this.tag);
+    // @ts-ignore
     fd.append('tarifmin', this.tarifmin);
-    fd.append('tarifmax', this.tarifmax);
     fd.append('description', this.description);
     fd.append('user', this.authState.user.nom);
     fd.append('photo', this.images[0]);
@@ -161,7 +161,6 @@ export class ServiceComponent implements OnInit, OnDestroy {
       nom : this.nom,
       tag: this.tag,
       tarifmin: this.tarifmin,
-      tarifmax: this.tarifmax,
       description: this.description,
       user: this.authState.user.nom
     };
