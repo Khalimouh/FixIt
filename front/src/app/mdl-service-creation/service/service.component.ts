@@ -6,6 +6,7 @@ import {Store} from '@ngrx/store';
 import {AuthState} from '../../store/reducers/auth.reducers';
 import {AppState} from '../../store/app.states';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-hotel-creation',
@@ -19,16 +20,20 @@ export class ServiceComponent implements OnInit, OnDestroy {
   description: string;
   tag: string;
   photo: any[];
+  headers = new HttpHeaders();
 
   /** Constructor ==================================================================================================> */
   constructor(
     private sharedS: SharedService,
     private ngZone: NgZone,
     private store: Store<AppState>,
+    private toast: ToastrService,
     private http: HttpClient
   ) {
     this.authState$ = store.select(state => state.auth);
     this.loadOptions();
+    this.headers = this.headers.append('content-type', 'application/json');
+    this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
   }
 
   /** Variables ====================================================================================================> */
@@ -125,6 +130,18 @@ export class ServiceComponent implements OnInit, OnDestroy {
   deleteFile(index: number) {
     this.editedImages.splice(index, 1);
     this.images.splice(index, 1);
+  }
+
+  resend() {
+    const url = 'http://localhost:3000/resend';
+    this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
+        (res) => {
+        },
+        (err) => {
+          console.error(err);
+        }
+    );
+    this.toast.info('Email envoyé, Verifiez votre boite de réception ! ', '', {positionClass: 'toast-top-center', timeOut: 4000});
   }
 
   /** POST form ===============================================================> */

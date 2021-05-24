@@ -48,7 +48,7 @@ router.post('/signup',authController.emailExists, client.create);
 /* POST confirmation de mail*/
 router.get('/confirmation', client.confirmationPost);
 /* POST envoyer encore une fois une demande confirmation de mail*/
-router.post('/resend', client.resendTokenPost);
+router.post('/resend',authController.verifyAccessToken, client.resendTokenPost);
 /* POST renvoie les resultats de la recherche par mots clé*/
 router.post('/search', main.search);
 /* POST cree une annonce a partir des données du formulaire*/

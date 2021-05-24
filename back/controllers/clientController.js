@@ -87,7 +87,7 @@ module.exports = {
 
     //revoyer le lien de vérification de mail
     resendTokenPost: function (req, res, next) {
-        Client.findOne({ login: req.body.login }, function (err, user) {
+        Client.findOne({ _id: req.user_id }, function (err, user) {
             if (!user) return res.status(400).send({ msg: 'We were unable to find a user with that email.' });
             if (user.isVerified) return res.status(400).send({ msg: 'This account has already been verified. Please log in.' });
 
@@ -101,7 +101,7 @@ module.exports = {
                 // Send the email
                 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
                 const mailOptions = {
-                    to: user.email,
+                    to: user.login,
                     from: 'haffarm1@hotmail.com',
                     subject: 'Account Verification Token',
                     text: 'Hello,\n\n' + 'Please verify your account by clicking the link: \nhttp:\/\/' + req.headers.host + '/confirmation?token=' + token.token + '\n',

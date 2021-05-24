@@ -186,6 +186,19 @@ export class MainComponent implements OnInit, OnDestroy {
     );
   }
 
+  resend() {
+    const url = 'http://localhost:3000/resend';
+    this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
+        (res) => {
+        },
+        (err) => {
+          console.error(err);
+        }
+    );
+    this.toast.info('Email envoyé, Verifiez votre boite de réception ! ', '', {positionClass: 'toast-top-center', timeOut: 4000});
+
+  }
+
   OnDispoClick(val, id) {
     console.log(id);
     const url = 'http://localhost:3000/annoncesDispo';

@@ -187,6 +187,7 @@ export class EditPasswordDialogComponent implements OnDestroy {
     } else {
       this.store.dispatch(new UserEditPWD({old_password: this.oldPWD, new_password: this.newPWD1}));
     }
+    this.dialogRef.close();
   }
   closeDialog() {
     this.errorMessage = null;

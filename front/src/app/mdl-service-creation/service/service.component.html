@@ -29,6 +29,7 @@
 
     <div *ngIf="!authState.user.isVerified" class="relative w-full text-xl text-center pt-16">
         Vous devez confimer votre adresse mail, aprés rechargez cette page
+        <div>Vous n'avez pas reçu le mail de confirmation ?, <a class="text-blue-500 underline" (click)="resend()" routerLink="/profile">Renvoyer</a></div>
     </div>
     <!-- Tab1 ======================================================================================================== -->
     <div *ngIf="authState.user.isVerified"
