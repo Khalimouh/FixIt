@@ -18,7 +18,7 @@
     <!-- Sub header ================================================================================================== -->
     <div class="h-24 2xl:h-32 w-full px-6 md:px-12 lg:px-24 2xl:px-32 flex items-center bg-my-blue-1">
         <div class="h-16 w-16 2xl:w-24 2xl:h-24 my-border">
-            <img alt="avatar" class="h-full w-full" src="assets/images/avatar.png">
+            <img alt="avatar" class="h-full w-full" src="http://127.0.0.1:3000/{{authState.user.photo}}">
         </div>
         <div class="h-full ml-4 flex flex-col justify-center">
             <span class="text-white text-2xl font-bold ">{{ authState.user?.nom + ' ' + authState.user.prenom   }}</span>
@@ -41,15 +41,15 @@
             <div class="blue_line"></div>
         </div>
         <div class="input-wrapper col-span-1">
-            <svg-icon class="mx-3" src="{{ 'assets/svg/service_intitule.svg' }}"
-                      [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
+            <svg-icon class="mx-3 " src="{{ 'assets/svg/service_intitule.svg' }}"
+                      [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.5)' }"></svg-icon>
             <input (focus)="input_focused($event.target)"  class="my-input"
                    placeholder="Intitulé du service"
                    type="text" [(ngModel)]="nom" ><!--// INPUT //-->
         </div>
         <div class="input-wrapper col-span-1">
             <svg-icon class="mx-3" src="{{ 'assets/svg/service-client.svg' }}"
-                      [svgStyle]="{ 'width.px':20, 'fill':'#5B636D' }"></svg-icon>
+                      [svgStyle]="{ 'width.px':20, 'fill': 'rgba(91, 99, 109, 0.8)' }"></svg-icon>
             <mat-select (focus)="input_focused($event.target)" (openedChange)="mat_toggled($event)"
                         disableOptionCentering panelClass="my-mat-select" placeholder="Service Tag"
                         [(value)]="tag">

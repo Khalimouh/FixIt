@@ -74,6 +74,7 @@
                 [routerLink]="['//creation/service']" routerLinkActive="router-link-active">Proposer un service</span>
         </div>
 
+    <div class="text-center" *ngIf="!annonces.length">Pas d'annonces</div>
 
         <ul>
             <li *ngFor="let ann of annonces">

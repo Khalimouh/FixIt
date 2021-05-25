@@ -34,10 +34,6 @@ module.exports = {
     //Dépot d'annonces
     submit: function(req,res){
 
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-        console.log(req.body)
-        console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
-
         // //console.log(req.headers);
         Annonces.countDocuments({}, async function(err,nb){
             if(err) console.error(err, "Erreur dans le comptage des documents de la collection artisant")
@@ -52,6 +48,7 @@ module.exports = {
                 var yyyy = today.getFullYear();
                 obj.date = dd+'/'+mm+'/'+yyyy;
                 obj.dateAdd = Date.now();
+                obj.code = req.body.code;
                 obj.avis = [{idclient: 0, noteservice: 0, notetemps: 0, NoteCom: 0,desc:0, date: obj.date}];
                 obj.dispo = true;
                 console.log(obj)
