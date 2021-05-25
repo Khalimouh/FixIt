@@ -4,14 +4,15 @@
        id="mission">
       <svg-icon class="mx-3" src="{{ 'assets/svg/service-client.svg' }}" [svgStyle]="{ 'width.px':20, 'height.px':25, 'fill': 'rgba(91, 99, 109, 1)' }"></svg-icon>
 
-    <div class="col-span-6 h-full  flex items-center  border-r">
-      <input  class="tex" matInput
-              placeholder="Mission"
-              type="text"
-              [(ngModel)]="mission"
-      >
+    <div class="col-span-6">
+      <mat-select disableOptionCentering panelClass="mat-select-options mat-select-extra-options"
+                  placeholder="Mission" [(value)]="mission">
+        <mat-option *ngFor="let tag of tages"  [value]="tag">{{tag}}</mat-option>
+      </mat-select>
     </div>
   </div>
+
+
 
   <!-- Budget ==== -->
   <div class="col-span-8 md:col-span-4 lg:col-span-2 h-10 flex items-center bg-white" id="check-in-out">

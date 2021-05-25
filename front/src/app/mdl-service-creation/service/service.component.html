@@ -69,6 +69,15 @@
                    type="number" [(ngModel)]="tarifmin"><!--// INPUT //-->
         </div>
 
+        <div class="input-wrapper col-span-1">
+            <div class="clo-span-1 flex items-center justify-center cursor-pointer">
+                <svg-icon class="mx-3" src="{{ 'assets/svg/location.svg' }}" [svgStyle]="{ 'width.px':25, 'height.px':25, 'fill': 'rgba(91, 99, 109, 0.8)' }"></svg-icon>
+            </div>
+            <input (focus)="input_focused($event.target)" class="my-input"
+                   placeholder="Code Postal"
+                   type="number" [(ngModel)]="code"><!--// INPUT //-->
+        </div>
+
 
         <div class="col-span-4 flex items-center mt-4 mb-3">
             <span class="section-label">Description</span>

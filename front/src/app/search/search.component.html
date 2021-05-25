@@ -37,8 +37,10 @@
         </div>
       </div>
       <!-- info cards ============================================================================================== -->
-      <ul>
-        <li *ngFor="let ann of annonces | slice:0:5 ">
+      <div class="text-center mt-8 min-h-screen" *ngIf="!annonces.length">Pas d'annonces</div>
+      <div class="min-h-screen">
+        <ul>
+        <li *ngFor="let ann of annonces | slice:0:10 ">
        <div class="info-card sm:flex sm:h-full mt-4">
         <div class="flex flex-col flex-grow p-2 sm:pl-1 sm:pb-3 sm:pt-5" >
           <span class="flex items-start" routerLink="/detail">
@@ -78,7 +80,8 @@
         <div class="sm:h-full sm:w-56 p-2 pt-1 sm:p-3">
           <div class="h-12 sm:h-full grid grid-cols-4 sm:grid-cols-3 gap-1 sm:gap-1">
             <div class="col-span-1 flex items-center sm:col-span-2 sm:row-span-2">
-              <img alt="wallpaper" class="h-12 sm:h-full w-full object-cover" [src]="ann.photo.data">
+              <img alt="wallpaper" *ngIf="ann.photo.data" class="h-12 sm:h-full w-full object-cover" [src]="ann.photo.data">
+              <img alt="wallpaper" *ngIf="!ann.photo.data" class="h-12 sm:h-full w-full object-cover" src="http://127.0.0.1:3000/{{ann.photo}}">
             </div>
           </div>
         </div>
@@ -96,7 +99,7 @@
       </div>
         </li>
       </ul>
-
+      </div>
   </div>
 </div>
 </div>

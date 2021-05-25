@@ -16,6 +16,7 @@ import { ToastrService } from 'ngx-toastr';
 export class ServiceComponent implements OnInit, OnDestroy {
   nom: string;
   tarifmin: number;
+  code: number;
   description: string;
   tag: string;
   photo: any[];
@@ -58,6 +59,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
     this.description = '';
     this.tag = '';
     this.photo = null;
+    this.code = null;
   }
   ngOnDestroy(): void {
     this.destroyed$.next(true);
@@ -156,14 +158,9 @@ export class ServiceComponent implements OnInit, OnDestroy {
     fd.append('description', this.description);
     fd.append('user', this.authState.user.nom);
     fd.append('photo', this.images[0]);
-    const body = {
-      photo : this.photo,
-      nom : this.nom,
-      tag: this.tag,
-      tarifmin: this.tarifmin,
-      description: this.description,
-      user: this.authState.user.nom
-    };
+    // @ts-ignore
+    fd.append('code', this.code);
+
     const url = 'http://localhost:3000/submit';
     let head = new HttpHeaders();
     head = head.append('Access-Control-Allow-Origin', '*');

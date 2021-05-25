@@ -11,6 +11,7 @@ export class MainSearchComponent implements OnInit {
 
   constructor(private sharedS: SharedService, private http: HttpClient) {}
   states = this.sharedS.states;
+  tages = this.sharedS.tages;
   annonces = [];
   mission: string;
   prix: number;
