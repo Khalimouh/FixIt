@@ -12,8 +12,11 @@ export class SearchComponent implements OnInit {
   items: GalleryItem[] = [];
   annonces: any[] = [];
   sub: Subscription;
+  IPback: string;
 
-  constructor(private sharedS: SharedService) {}
+  constructor(private sharedS: SharedService) {
+    this.IPback = this.sharedS.IPback;
+  }
 
   ngOnInit(): void {
     this.sub = this.sharedS.ann.subscribe(annonces => this.annonces = annonces);

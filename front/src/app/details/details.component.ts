@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import {SharedService} from '../mdl-shared/shared.service';
 
 @Component({
   selector: 'app-details',
@@ -9,10 +10,11 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./details.component.css']
 })
 export class DetailsComponent implements OnInit {
-  constructor(private location: Location, private http: HttpClient) {
+    IPback: string;
+  constructor(private sharedS: SharedService, private location: Location, private http: HttpClient) {
     this.headers = this.headers.append('Content-Type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
-
+    this.IPback = this.sharedS.IPback;
 
   }
   headers = new HttpHeaders();
@@ -25,7 +27,7 @@ s;
 
   fetchServiceDetails(id){
       console.log(id);
-      const url = 'http://localhost:3000/detail';
+      const url = this.IPback + '/detail';
       this.http.post<any>(url, {_id : id.id}, { headers: this.headers }).subscribe(
         (res) => {
           console.log(res);

@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http';
 import {tap} from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
 import {EMPTY} from 'rxjs';
+import {SharedService} from '../mdl-shared/shared.service';
 
 
 export const ACC_TOKEN_NAME = 'tg-access-token';

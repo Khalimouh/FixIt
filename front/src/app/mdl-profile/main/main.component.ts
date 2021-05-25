@@ -13,6 +13,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UserInfo } from '../../store/actions/auth.actions';
 import { HttpHeaders } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
+import {SharedService} from '../../mdl-shared/shared.service';
 
 
 @Component({
@@ -29,8 +30,10 @@ export class MainComponent implements OnInit, OnDestroy {
   showAnn = false;
   annonces = [];
   headers = new HttpHeaders();
+  IPback: string;
 
-  constructor(private store: Store<AppState>,
+  constructor(private sharedS: SharedService,
+              private store: Store<AppState>,
               private profileS: ProfileService,
               private dialog: MatDialog,
               private toast: ToastrService,
@@ -40,6 +43,7 @@ export class MainComponent implements OnInit, OnDestroy {
     this.authState$ = store.select(state => state.auth);
     this.headers = this.headers.append('content-type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
+    this.IPback = this.sharedS.IPback;
 
   }
 
@@ -51,7 +55,7 @@ export class MainComponent implements OnInit, OnDestroy {
       console.log(state);
       this.authState = state;
       if (state.user) {
-        this.profilePicSrc = this.domSanitizer.sanitize(SecurityContext.URL, 'http://127.0.0.1:3000/' + state.user?.photo);
+        this.profilePicSrc = this.domSanitizer.sanitize(SecurityContext.URL, this.IPback + '/' + state.user?.photo);
       }
 
     });

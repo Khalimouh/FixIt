@@ -9,13 +9,16 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 })
 export class MainSearchComponent implements OnInit {
 
-  constructor(private sharedS: SharedService, private http: HttpClient) {}
+  constructor(private sharedS: SharedService, private http: HttpClient) {
+    this.IPback = this.sharedS.IPback;
+  }
   states = this.sharedS.states;
   tages = this.sharedS.tages;
   annonces = [];
   mission: string;
   prix: number;
   code: string;
+  IPback: string;
 
 
   ngOnInit(): void {
@@ -28,7 +31,7 @@ export class MainSearchComponent implements OnInit {
 
   doSearch(){
     console.log(this.mission, this.prix, this.code);
-    const url = 'http://localhost:3000/search?';
+    const url = this.IPback + '/search?';
     const body = {
       metier: this.mission,
       prix: this.prix,
@@ -39,7 +42,7 @@ export class MainSearchComponent implements OnInit {
     headers = headers.append('Access-Control-Allow-Origin', '*');
     // headers=headers.append('content-type','application/x-www-form-urlencoded');
     // @ts-ignore
-    this.http.post<any>(url, body, {headers: headers}).subscribe(
+    this.http.post<any>(url, body, {headers}).subscribe(
         (res) => {
           console.log(res);
           this.sharedS.storeData(res);

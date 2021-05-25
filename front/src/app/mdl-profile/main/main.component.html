@@ -80,7 +80,7 @@
             <li *ngFor="let ann of annonces">
                 <div>
                     <div class="info-card flex sm:h-32">
-                        <img alt="wallpaper" class="h-full w-32 object-cover p-4" src="http://127.0.0.1:3000/{{ann.photo}}">
+                        <img alt="wallpaper" class="h-full w-32 object-cover p-4" src="{{this.IPback}}/{{ann.photo}}">
                         <div class="flex flex-col flex-grow p-4 sm:px-8 sm:py-6">
                             <span class="flex items-center text-sm">
                                 <span class="text-lg font-bold" routerLink="/detail" [state]="{id: ann.Annonceid}">{{ann.nom}}</span>

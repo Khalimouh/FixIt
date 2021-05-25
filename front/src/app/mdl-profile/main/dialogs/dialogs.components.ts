@@ -8,17 +8,20 @@ import {AuthState} from '../../../store/reducers/auth.reducers';
 import {ResetMessages, UserEditInfo, UserEditPWD} from '../../../store/actions/auth.actions';
 import {ToastrService} from 'ngx-toastr';
 import {DomSanitizer} from '@angular/platform-browser';
+import {SharedService} from '../../../mdl-shared/shared.service';
 
 @Component({
   selector: 'app-dialog-profile-info',
   templateUrl: 'templates/profile-info-dialog.html' })
 export class ProfileInfoDialogComponent implements OnDestroy{
-  constructor(private dialogRef: MatDialogRef<ProfileInfoDialogComponent>,
+  IPback: string;
+  constructor(private sharedS: SharedService, private dialogRef: MatDialogRef<ProfileInfoDialogComponent>,
               private store: Store<AppState>,
               private domSanitizer: DomSanitizer,
               @Inject(MAT_DIALOG_DATA) public data: { state$: Observable<AuthState>, toast: ToastrService }) {
+    this.IPback = this.sharedS.IPback;
     data.state$.pipe(takeUntil(this.destroyed$)).subscribe( state => {
-      this.editedImage.imageSRC = this.domSanitizer.sanitize(SecurityContext.URL, 'http://127.0.0.1:3000/' + state.user?.photo);
+      this.editedImage.imageSRC = this.domSanitizer.sanitize(SecurityContext.URL, this.IPback + '/' + state.user?.photo);
       this.fullName = state.user?.nom + ' ' + state.user?.prenom;
       if (state.SuccessMessage?.split(':')[0] === 'userInfo') {
         this.closeDialog();

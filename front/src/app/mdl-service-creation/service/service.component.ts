@@ -8,6 +8,7 @@ import {AppState} from '../../store/app.states';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 
+
 @Component({
   selector: 'app-hotel-creation',
   templateUrl: './service.component.html',
@@ -21,6 +22,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
   tag: string;
   photo: any[];
   headers = new HttpHeaders();
+  IPback: string;
 
   /** Constructor ==================================================================================================> */
   constructor(
@@ -34,6 +36,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
     this.loadOptions();
     this.headers = this.headers.append('content-type', 'application/json');
     this.headers = this.headers.append('Access-Control-Allow-Origin', '*');
+    this.IPback = this.sharedS.IPback;
   }
 
   /** Variables ====================================================================================================> */
@@ -133,7 +136,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
   }
 
   resend() {
-    const url = 'http://localhost:3000/resend';
+    const url = this.IPback + '/resend';
     this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
         (res) => {
         },
@@ -161,7 +164,7 @@ export class ServiceComponent implements OnInit, OnDestroy {
     // @ts-ignore
     fd.append('code', this.code);
 
-    const url = 'http://localhost:3000/submit';
+    const url = this.IPback + '/submit';
     let head = new HttpHeaders();
     head = head.append('Access-Control-Allow-Origin', '*');
     this.http.post(url, fd, {headers: head}).subscribe(
