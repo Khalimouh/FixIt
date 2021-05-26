@@ -14,7 +14,7 @@ export const REF_TOKEN_NAME = 'tg-refresh-token';
 })
 export class AuthService {
 
-  private BASE_URL = 'http://127.0.0.1:3000';
+  private BASE_URL = 'https://aws-fixit.azurewebsites.net';
 
   refreshToken() {
     return this.http.post(`${this.BASE_URL}/auth/token/refresh`, {refreshToken: this.getToken(REF_TOKEN_NAME)});
