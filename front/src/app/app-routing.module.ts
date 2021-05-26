@@ -8,8 +8,7 @@ import {LoginComponent} from './mdl-shared/navbar/dialogs/dialogs.components';
 import { AuthGuard } from './auth/auth.guard';
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo: 'home' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'result', component: SearchComponent},
   { path: 'login', component: LoginComponent},
   { path: 'detail', component: DetailsComponent},
