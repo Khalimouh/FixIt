@@ -176,7 +176,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   getUserAnnonces() {
-    const url = 'http://localhost:3000/getAnnonces?';
+    const url = this.IPback + '/getAnnonces?';
     this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
       (res) => {
         this.annonces = res;
