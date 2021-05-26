@@ -191,7 +191,7 @@ export class MainComponent implements OnInit, OnDestroy {
   }
 
   resend() {
-    const url = 'http://localhost:3000/resend';
+    const url = this.IPback + '/resend';
     this.http.post<any>(url, { auth: this.authState }, { headers: this.headers }).subscribe(
         (res) => {
         },
@@ -205,7 +205,7 @@ export class MainComponent implements OnInit, OnDestroy {
 
   OnDispoClick(val, id) {
     console.log(id);
-    const url = 'http://localhost:3000/annoncesDispo';
+    const url = this.IPback + '/annoncesDispo';
     this.http.put<any>(url, { value: !val, ida: id }, { headers: this.headers }).subscribe(
       (res) => {
         console.log(res);
