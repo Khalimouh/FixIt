@@ -10,7 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "faker": "^5.5.3",
+    "mongodb": "^3.6.6",
+    "mongodb-client-encryption": "^1.2.3",
     "mongoose": "^5.12.4",
-    "mongoose-unique-validator": "^2.0.3"
+    "mongoose-unique-validator": "^2.0.3",
+    "node-gyp": "^8.0.0"
   }
 }
